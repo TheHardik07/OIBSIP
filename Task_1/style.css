@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  /* justify-content: space-between; */
+  gap: 40px;
+
+  padding: 17px 87px;
+  color: aliceblue;
+  align-items: center;
+  background: transparent;
+  border-bottom: 1px solid aliceblue;
+}
+
+.nav-left .logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 50px;
+}
+
+.nav-link {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  flex-grow: 1;
+  justify-content: flex-start;
+  margin-right: auto;
+
+  li a {
+    color: rgb(232, 237, 226);
+    text-decoration: none;
+    /* display: flex; */
+    /* align-items: center; */
+    font-weight: 700;
+    font-size: large;
+    transition: opacity 0.3s;
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    -ms-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+  }
+
+  li a:hover {
+    opacity: 1;
+  }
+}
+
+.nav-icons {
+  display: flex;
+  gap: 17px;
+  margin-right: 20px;
+}
+
+.nav-icons a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px; /* Remove this line as Font Awesome is better controlled via the <a> element */
+  opacity: 0.85;
+  /* transition: opacity 0.3s; */
+}
+.heading {
+  font-size: 37px;
+}
+.primary_btn {
+  background: linear-gradient(137deg, #3b1d23, #b11010);
+  color: white;
+  font-size: 15px;
+  border: none;
+  padding: 12px 17px;
+  cursor: pointer;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 0 150px; */
+  background-image: url("https://images.hdqwalls.com/wallpapers/2018-modified-bmw-m8-gte-4k-a7.jpg");
+  background-size: cover;
+  background-position: center;
+  /* background: linear-gradient(120deg, #83c6c7, #4476a8); */
+}
+
+.hero_text {
+  position: relative;
+  z-index: 2;
+  padding-left: 80px;
+  /* margin-top: 180px; */
+  /* padding: 20px 2px; */
+  max-width: 700px;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.296),
+    rgba(0, 0, 0, 0.7)
+  );
+  z-index: 1;
+}
+/* .hero_heading {
+  color: aliceblue;
+} */
+
+.hero_text h1 {
+  color: white;
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero_text p {
+  color: #bdb512;
+  margin-bottom: 25px;
+  font-size: 27px;
+}
+
+.trust {
+  display: flex;
+  justify-content: space-between;
+  padding: 70px 40px;
+}
