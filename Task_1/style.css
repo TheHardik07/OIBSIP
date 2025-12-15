@@ -132,8 +132,87 @@
   font-size: 27px;
 }
 
+/* .trust {
+  
+} */
+
 .trust {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  padding: 70px 40px;
+  padding: 70px 40px; */
+  position: relative;
+  min-height: 80vh;
+  display: grid;
+  flex-direction: row;
+  align-items: center;
+  /* padding: 0 150px; */
+  background-image: url("https://www.carblogindia.com/wp-content/uploads/2022/05/vw-virtus-wide-body-concept.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.trust::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.7)
+  );
+  z-index: 1;
+}
+
+.gradient {
+  font-size: large;
+  color: rgba(90, 93, 54, 0.868);
+  padding: 50px;
+  /* align-items: center; */
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0.718));
+}
+
+.trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 120px);
+  gap: 40px;
+  padding: 80px;
+  z-index: 2;
+}
+
+/* Diagonal placement */
+.Trust_card:nth-child(1) {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.Trust_card:nth-child(2) {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.Trust_card:nth-child(3) {
+  grid-row: 3;
+  grid-column: 3;
+}
+
+/* Styling */
+.Trust_card {
+  position: relative;
+  z-index: 2;
+  padding: 30px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  color: #bdb512;
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 15px;
 }
