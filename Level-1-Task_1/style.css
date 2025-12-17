@@ -1,0 +1,409 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.bg-section {
+  position: relative;
+}
+
+.bg-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.75)
+  );
+  z-index: 1;
+}
+
+.bg-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+.nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  /* justify-content: space-between; */
+  gap: 40px;
+
+  padding: 17px 87px;
+  color: aliceblue;
+  align-items: center;
+  background: transparent;
+  border-bottom: 1px solid aliceblue;
+}
+
+.nav-left .logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 50px;
+}
+
+.nav-link {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  flex-grow: 1;
+  justify-content: flex-start;
+  margin-right: auto;
+}
+
+.nav-link li a {
+  color: rgb(232, 237, 226);
+  text-decoration: none;
+  /* display: flex; */
+  /* align-items: center; */
+  font-weight: 700;
+  font-size: large;
+  transition: opacity 0.3s;
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -ms-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+}
+
+.nav-link li a:hover {
+  opacity: 1;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 17px;
+  margin-right: 20px;
+}
+
+.nav-icons a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px; /* Remove this line as Font Awesome is better controlled via the <a> element */
+  opacity: 0.85;
+  /* transition: opacity 0.3s; */
+}
+.heading {
+  font-size: 37px;
+}
+.primary_btn {
+  background: linear-gradient(137deg, #3b1d23, #b11010);
+  color: white;
+  font-size: 15px;
+  border: none;
+  padding: 12px 17px;
+  cursor: pointer;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  transition: transform 0.3s ease;
+  -webkit-transition: transform 0.3s ease;
+  -moz-transition: transform 0.3s ease;
+  -ms-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+}
+.primary_btn:hover {
+  transform: translateX(8px);
+  -webkit-transform: translateX(8px);
+  -moz-transform: translateX(8px);
+  -ms-transform: translateX(8px);
+  -o-transform: translateX(8px);
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 0 150px; */
+  background-image: url("https://images.hdqwalls.com/wallpapers/2018-modified-bmw-m8-gte-4k-a7.jpg");
+  background-size: cover;
+  background-position: center;
+  /* background: linear-gradient(120deg, #83c6c7, #4476a8); */
+}
+
+.hero_text {
+  position: relative;
+  z-index: 2;
+  padding-left: 80px;
+  /* margin-top: 180px; */
+  /* padding: 20px 2px; */
+  max-width: 700px;
+}
+
+/* .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.296),
+    rgba(0, 0, 0, 0.7)
+  );
+  z-index: 1;
+} */
+/* .hero_heading {
+  color: aliceblue;
+} */
+
+.hero_text h1 {
+  color: white;
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero_text p {
+  color: #bdb512;
+  margin-bottom: 25px;
+  font-size: 27px;
+}
+
+/* .trust {
+  
+} */
+
+.trust {
+  /* display: flex;
+  justify-content: space-between;
+  padding: 70px 40px; */
+  position: relative;
+  min-height: 80vh;
+  display: grid;
+  flex-direction: row;
+  align-items: center;
+  /* padding: 0 150px; */
+  background-image: url("https://www.carblogindia.com/wp-content/uploads/2022/05/vw-virtus-wide-body-concept.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* .trust::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.296),
+    rgba(0, 0, 0, 0.7)
+  );
+  z-index: 1;
+} */
+
+.gradient {
+  font-size: large;
+  color: rgba(90, 93, 54, 0.868);
+  padding: 50px;
+  /* align-items: center; */
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0.718));
+}
+
+.trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 120px);
+  gap: 40px;
+  padding: 80px;
+  z-index: 2;
+}
+
+/* Diagonal placement */
+.Trust_card:nth-child(1) {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.Trust_card:nth-child(2) {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.Trust_card:nth-child(3) {
+  grid-row: 3;
+  grid-column: 3;
+}
+
+/* Styling */
+.Trust_card {
+  position: relative;
+  z-index: 2;
+  padding: 30px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.33);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(222, 218, 218, 0.14);
+  color: #fff200;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  /*align-items: center;
+  */
+  justify-content: center;
+  gap: 15px;
+  transition: transform 0.3s ease;
+  -webkit-transition: transform 0.3s ease;
+  -moz-transition: transform 0.3s ease;
+  -ms-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+}
+
+.Trust_card:hover {
+  transform: translateY(-8px);
+}
+
+.models {
+  padding: 100px 80px;
+  /* background: #0e0e0e; */
+  background-image: url("https://cdn.luxuo.com/2014/05/BMW-Vision-Gran-Turismo.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 120px);
+  gap: 40px;
+  padding: 80px;
+  z-index: 2; */
+}
+
+.model_card:nth-child(1) {
+  grid-row: 1;
+  grid-column: 3;
+}
+
+.model_card:nth-child(2) {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.model_card:nth-child(3) {
+  grid-row: 3;
+  grid-column: 1;
+}
+.section-title {
+  position: relative;
+  z-index: 2;
+  font-size: 37px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+/* .models::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.741),
+    rgba(0, 0, 0, 0.471),
+    rgba(0, 0, 0, 0.755)
+  );
+  z-index: 1;
+} */
+
+.models-grid {
+  position: relative;
+  display: grid;
+  z-index: 2;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  grid-template-rows: auto;
+}
+
+.model_card {
+  background: rgba(6, 6, 6, 0.684);
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(132, 125, 125, 0.4);
+  backdrop-filter: blur(2px);
+  transition: transform 0.3s ease;
+  -webkit-transition: transform 0.3s ease;
+  -moz-transition: transform 0.3s ease;
+  -ms-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+}
+
+.model_card:hover {
+  transform: translateY(-8px);
+}
+
+.model_card h3 {
+  color: rgb(5, 247, 247);
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.model_card p {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  margin-bottom: 15px;
+}
+
+.model_card span {
+  font-size: 22px;
+  font-weight: bold;
+  color: #dcce0b;
+}
+
+.footer {
+  /* background: #0b0b0b; */
+  position: relative;
+  background-image: url("https://www.shutterstock.com/image-illustration/lmaty-kazakhstan-february-10-2019-600nw-1366040501.jpg");
+  background-position: center;
+  background-size: cover;
+  color: white;
+  padding: 60px 20px 30px;
+  text-align: center;
+}
+
+.footer-content h3 {
+  color: aqua;
+  font-size: xx-large;
+  margin-bottom: 10px;
+}
+
+.footer-content p {
+  font-size: 21px;
+  color: white;
+  font-style: italic;
+  z-index: 2;
+  opacity: 0.8;
+}
+
+.footer-icons {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-icons i {
+  font-size: 27px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  -webkit-transition: transform 0.3s ease;
+  -moz-transition: transform 0.3s ease;
+  -ms-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+}
+
+.footer-icons i:hover {
+  color: #b11010dc;
+  transform: translateY(-8px);
+  -webkit-transform: translateY(-8px);
+  -moz-transform: translateY(-8px);
+  -ms-transform: translateY(-8px);
+  -o-transform: translateY(-8px);
+}
