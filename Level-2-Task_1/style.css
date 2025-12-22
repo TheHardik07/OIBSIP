@@ -1,0 +1,186 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ebf4dd;
+  transition: background 0.3s ease;
+}
+
+.calculator {
+  width: 350px;
+  background: #3b4953;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.display {
+  height: 90px;
+  background: #ebf4dd;
+  border-radius: 45px;
+  margin-bottom: 20px;
+  padding: 20px;
+  font-size: 32px;
+  font-weight: 600;
+  color: #3b4953;
+  text-align: right;
+  overflow-x: auto;
+}
+
+.display::-webkit-scrollbar {
+  display: none;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+button {
+  font-size: 17px;
+  font-weight: 500;
+  padding: 18px 0;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-number {
+  background: #90ab8b;
+  color: #3b4953;
+}
+
+.btn-op {
+  background: #5a7863;
+  color: white;
+}
+
+.btn-equals {
+  background: #3b4953;
+  color: #ebf4dd;
+  grid-column: span 2;
+}
+
+.btn-delete,
+.btn-clear {
+  background: #ebf4dd;
+  color: #3b4953;
+}
+
+.btn-number:hover {
+  background: #5a7863;
+  color: #ebf4dd;
+}
+
+.btn-op:hover {
+  background: #3b4953;
+}
+
+.btn-equals:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-delete:hover {
+  background: #90ab8b;
+  color: #3b4953;
+}
+
+.btn-clear:hover {
+  background: #90ab8b;
+  color: #3b4953;
+}
+
+.small-display {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  font-size: 14px;
+  color: #ebf4dd;
+  opacity: 0.85;
+  margin: auto;
+  padding: auto;
+}
+
+.toggle-container {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+}
+
+.toggle-label {
+  cursor: pointer;
+  font-size: 15px;
+  color: #ebf4dd;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  /* margin: 10px; */
+}
+
+.toggle-label input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+body.dark-mode {
+  background: #3b4953;
+}
+
+body.dark-mode .calculator {
+  background: #5a7863;
+}
+
+body.dark-mode .display {
+  background: #90ab8b;
+  color: #3b4953;
+}
+
+body.dark-mode .btn-number {
+  background: #ebf4dd;
+  color: #3b4953;
+}
+
+body.dark-mode .btn-number:hover {
+  background: #90ab8b;
+  color: #3b4953;
+}
+
+body.dark-mode .btn-op {
+  background: #ebf4dd;
+  color: #3b4953;
+}
+
+body.dark-mode .btn-op:hover {
+  background: #90ab8b;
+  color: #3b4953;
+}
+
+body.dark-mode .btn-equals {
+  background: #ebf4dd;
+  color: #3b4953;
+}
+
+body.dark-mode .btn-delete,
+body.dark-mode .btn-clear {
+  background: #5a7863;
+  color: #ebf4dd;
+}
+
+body.dark-mode .btn-delete:hover,
+body.dark-mode .btn-clear:hover {
+  background: #90ab8b;
+  color: #3b4953;
+}
