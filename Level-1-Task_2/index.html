@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PORTFOLIO | Hardik Rathod</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -14,7 +15,7 @@
     <!-- <h1>Hello World</h1> -->
 
     <nav class="navbar">
-      <h2 class="logo">Hardu</h2>
+      <h2 class="logo">The Hardu</h2>
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
@@ -25,14 +26,94 @@
 
     <section class="hero">
       <div class="hero_text">
-        <h1>Hello I am <span>Hardik Rathod</span></h1>
+        <h1>Hello I am <span id="name">Hardik Rathod</span></h1>
         <p>Web Developer | MERN Stack</p>
-        <a href="#contact" class="btn">Hire</a>
+        <a href="#contacts" class="btn">Hire</a>
       </div>
 
       <div class="hero_img">
         <img src="assets/Profile_IMG.png" alt="Profile Picture" />
       </div>
     </section>
+
+    <!-- About -->
+
+    <section id="about" class="section reveal">
+      <h2>PROFESSIONAL SUMMARY</h2>
+      <p>
+        I'm a B.Tech CSE student (2022–2026) at GSFC University with a strong
+        passion for full-stack web development using the MERN stack. Skilled in
+        MongoDB, Express.js, React.js, and Node.js, I enjoy building scalable,
+        responsive, and user-friendly applications. Debugging and solving
+        problems develops me, and I love turning ideas into working products.
+      </p>
+    </section>
+    <section id="skills" class="section reveal">
+      <h2>skills</h2>
+      <div class="Skills-grid">
+        <div class="skills">HTML</div>
+        <div class="skills">CSS</div>
+        <div class="skills">Tailwind CSS</div>
+        <div class="skills">JavaScript</div>
+        <div class="skills">MongoDB</div>
+        <div class="skills">React.js</div>
+        <div class="skills">Node.js</div>
+        <div class="skills">Express</div>
+        <div class="skills">TypeScript</div>
+        <div class="skills">Git</div>
+        <div class="skills">GitHub</div>
+        <div class="skills">PostMan</div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+
+    <section id="projects" class="section reveal">
+      <h2>Projects</h2>
+
+      <div class="project-grid">
+        <div class="project-cards reveal">
+          <h3>EduNexus</h3>
+          <p>
+            EduNexus is a modern, responsive Learning Management System (LMS)
+            built using the MERN stack It is designed to streamline educational
+            content sharing and collaboration between students and educators.
+          </p>
+        </div>
+
+        <div class="project-cards reveal">
+          <h3>Tubix</h3>
+
+          <p>
+            YouTube has become a dominant platform for creators and
+            organizations to share video content. However, managing multiple
+            collaborators—such as editors, managers, and administrators—within a
+            single channel often leads to security risks, particularly due to
+            the sharing of login credentials for uploading content. To address
+            this challenge, the AI Powered YouTube Middleware system has been
+            developed to provide a secure, collaborative, and automated workflow
+            for video management and publishing.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Contact -->
+
+    <section id="contacts" class="section reveal">
+      <h3>Contact Me</h3>
+
+      <div class="icons">
+        <a href="http://www.linkedin.com/in/hardik-rathod-7b12bb282"
+          ><i class="fa-brands fa-linkedin-in"></i
+        ></a>
+        <a href="https://github.com/TheHardik07">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Hardik Rathod | Portfolio</p>
+    </footer>
   </body>
 </html>
