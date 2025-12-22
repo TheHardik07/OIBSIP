@@ -45,6 +45,7 @@
   font-size: 24px;
   font-weight: bold;
   margin-right: 50px;
+  cursor: pointer;
 }
 
 .nav-link {
@@ -72,6 +73,7 @@
 
 .nav-link li a:hover {
   opacity: 1;
+  color: #bdb512;
 }
 
 .nav-icons {
@@ -86,6 +88,10 @@
   font-size: 18px; /* Remove this line as Font Awesome is better controlled via the <a> element */
   opacity: 0.85;
   /* transition: opacity 0.3s; */
+}
+
+.nav-icons a:hover {
+  color: #b11010;
 }
 .heading {
   font-size: 37px;
@@ -392,6 +398,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
   cursor: pointer;
+  color: white;
   transition: transform 0.3s ease;
   -webkit-transition: transform 0.3s ease;
   -moz-transition: transform 0.3s ease;
@@ -400,7 +407,7 @@
 }
 
 .footer-icons i:hover {
-  color: #b11010dc;
+  color: #bdb512;
   transform: translateY(-8px);
   -webkit-transform: translateY(-8px);
   -moz-transform: translateY(-8px);

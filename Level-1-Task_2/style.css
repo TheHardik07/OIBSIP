@@ -33,13 +33,14 @@ body {
   opacity: 0.7;
 }
 
-/* .navbar a:hover {
+.navbar a:hover {
   opacity: 1;
-} */
+}
 
 .logo {
   color: #f4b822;
   font-family: cursive;
+  cursor: pointer;
 }
 
 .reveal {
@@ -164,6 +165,7 @@ body {
 
 .icons i {
   font-size: 22px;
+  color: aliceblue;
 }
 
 .icons {
@@ -174,6 +176,9 @@ body {
   margin: 12px;
 }
 
+.icons i:hover {
+  color: #f4b822;
+}
 footer {
   padding: 20px;
   opacity: 0.7;
