@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TO DO APP</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Task Manager</h1>
+      <p>Organize your day efficiency</p>
+    </header>
+
+    <main class="app">
+      <!-- add to a card -->
+
+      <section class="form-control">
+        <h2>Add Task</h2>
+        <input type="text" id="title" placeholder="Task Title" required />
+        <textarea
+          id="description"
+          placeholder="Taskdescription"
+          required
+        ></textarea>
+        <button onclick="addTask()">save task</button>
+      </section>
+
+      <!-- Pending Tasks -->
+      <section class="task-card">
+        <h2>Pending Tasks</h2>
+        <div id="pendingList"></div>
+      </section>
+
+      <!-- Completed Tasks -->
+      <section class="task-card">
+        <h2>Completed Tasks</h2>
+        <div id="completedList"></div>
+      </section>
+
+      <!-- task list -->
+      <!-- 
+      <section class="task-card">
+        <h2>your tasks</h2>
+        <div id="taskList"></div>
+      </section> -->
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
