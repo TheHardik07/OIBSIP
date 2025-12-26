@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="login-container">
+  <div class="login-card">
+
+    <div class="login-header">
+      <div class="material-logo">
+        <div class="logo-layers">
+          <div class="layer layer-1"></div>
+          <div class="layer layer-2"></div>
+          <div class="layer layer-3"></div>
+        </div>
+      </div>
+      <h2>Sign in</h2>
+      <p>to continue to your account</p>
+    </div>
+
+    <form class="login-form" onsubmit="login(event)">
+      <div class="form-group">
+        <div class="input-wrapper">
+          <input type="text" id="loginUser" required />
+          <label>Username</label>
+          <div class="input-line"></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-wrapper password-wrapper">
+          <input type="password" id="loginPass" required />
+          <label>Password</label>
+          <div class="input-line"></div>
+        </div>
+      </div>
+
+      <button class="material-btn">
+        <span class="btn-text">SIGN IN</span>
+      </button>
+    </form>
+
+    <div class="signup-link">
+      <p>Don't have an account?
+        <a href="register.html" class="create-account">Create account</a>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: #540863;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  line-height: 1.5;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-card {
+  background: #ffd3d5;
+  border-radius: 8px;
+  padding: 48px 40px 36px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.material-logo {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-layers {
+  position: relative;
+  width: 57px;
+  height: 57px;
+}
+
+.layer {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.layer-1 {
+  width: 57px;
+  height: 57px;
+  background: #540863;
+}
+
+.layer-2 {
+  width: 40px;
+  height: 40px;
+  top: 7px;
+  left: 7px;
+  background: #92487a;
+}
+
+.layer-3 {
+  width: 24px;
+  height: 24px;
+  top: 17px;
+  left: 17px;
+  background: #e49ba6;
+}
+
+.login-header h2 {
+  color: #540863;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 7px;
+}
+
+.login-header p {
+  color: #757575;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #e0e0e0;
+  padding: 16px 0 8px;
+  font-size: 16px;
+  outline: none;
+  background: transparent;
+}
+
+.input-wrapper label {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  color: #757575;
+  transition: 0.2s;
+  pointer-events: none;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+}
+
+.input-wrapper input:focus + label,
+.input-wrapper input:valid + label {
+  transform: translateY(-24px) scale(0.75);
+  color: #92487a;
+  -webkit-transform: translateY(-24px) scale(0.75);
+  -moz-transform: translateY(-24px) scale(0.75);
+  -ms-transform: translateY(-24px) scale(0.75);
+  -o-transform: translateY(-24px) scale(0.75);
+}
+
+.input-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: #92487a;
+  transition: width 0.2s;
+  -webkit-transition: width 0.2s;
+  -moz-transition: width 0.2s;
+  -ms-transition: width 0.2s;
+  -o-transition: width 0.2s;
+}
+
+.input-wrapper input:focus ~ .input-line {
+  width: 100%;
+}
+
+/* Password */
+.password-wrapper input {
+  padding-right: 50px;
+}
+
+/* Button */
+.material-btn {
+  width: 100%;
+  background: #92487a;
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  color: #540863;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.material-btn:hover {
+  background: #ffd3d5;
+}
+
+/* Links */
+.signup-link {
+  text-align: center;
+}
+
+.signup-link p {
+  font-size: 14px;
+  color: #757575;
+}
+
+.create-account {
+  color: #540863;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.create-account:hover {
+  color: #92487a;
+}
+
+/* Dashboard */
+.dashboard-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 70px auto;
+  padding: 0 20px;
+}
+.dashboard-card {
+  background: #e49ba6;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.12);
+  animation: fadeIn 0.4s ease;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.dashboard-header h2 {
+  color: #540863;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: #92487a;
+  border: none;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  background: #b71c1cdb;
+  color: #e49ba6;
+  font-weight: bold;
+}
+
+.dashboard-content {
+  color: #424242;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 600px) {
+  .dashboard-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 32px 24px;
+  }
+}
