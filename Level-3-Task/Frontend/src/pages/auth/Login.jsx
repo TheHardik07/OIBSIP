@@ -13,7 +13,7 @@ const Login = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:5002/api/auth/login",
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
         formData
       );
       localStorage.setItem("token", response.data.token);
@@ -38,16 +38,17 @@ const Login = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        background: "linear-gradient(135deg, #2D2D2D 0%, #8D1B3D 100%)",
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
     >
       <div
         style={{
-          background: "white",
+          background: "#FAF7F2",
           padding: "40px",
           borderRadius: "15px",
-          boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+          boxShadow: "0 25px 60px rgba(0,0,0,0.45)",
+          border: "1px solid rgba(242, 201, 76, 0.35)",
           width: "100%",
           maxWidth: "400px",
           textAlign: "center",
@@ -61,7 +62,8 @@ const Login = () => {
           <h2
             style={{
               margin: "0 0 10px 0",
-              color: "#333",
+              color: "#8D1B3D",
+              letterSpacing: "0.5px",
               fontSize: "28px",
               fontWeight: "600",
             }}
@@ -71,11 +73,11 @@ const Login = () => {
           <p
             style={{
               margin: "0",
-              color: "#666",
+              color: "#2D2D2D",
               fontSize: "16px",
             }}
           >
-            Sign in to your account 🍕
+            Sign in to your account
           </p>
         </div>
 
@@ -85,9 +87,9 @@ const Login = () => {
               marginBottom: "20px",
               padding: "12px",
               borderRadius: "6px",
-              backgroundColor: "#f8d7da",
-              border: "1px solid #f5c6cb",
-              color: "#721c24",
+              backgroundColor: "rgba(141, 27, 61, 0.12)",
+              border: "1px solid rgba(141, 27, 61, 0.4)",
+              color: "#8D1B3D",
             }}
           >
             {error}
@@ -107,14 +109,14 @@ const Login = () => {
               style={{
                 width: "100%",
                 padding: "15px",
-                border: "2px solid #e1e5e9",
+                border: "2px solid rgba(0,0,0,0.15)",
                 borderRadius: "8px",
                 fontSize: "16px",
                 transition: "border-color 0.3s ease",
                 outline: "none",
                 boxSizing: "border-box",
               }}
-              onFocus={(e) => (e.target.style.borderColor = "#667eea")}
+              onFocus={(e) => (e.target.style.borderColor = "#F2C94C")}
               onBlur={(e) => (e.target.style.borderColor = "#e1e5e9")}
             />
           </div>
@@ -131,14 +133,14 @@ const Login = () => {
               style={{
                 width: "100%",
                 padding: "15px",
-                border: "2px solid #e1e5e9",
+                border: "2px solid rgba(0,0,0,0.15)",
                 borderRadius: "8px",
                 fontSize: "16px",
                 transition: "border-color 0.3s ease",
                 outline: "none",
                 boxSizing: "border-box",
               }}
-              onFocus={(e) => (e.target.style.borderColor = "#667eea")}
+              onFocus={(e) => (e.target.style.borderColor = "#F2C94C")}
               onBlur={(e) => (e.target.style.borderColor = "#e1e5e9")}
             />
           </div>
@@ -151,8 +153,9 @@ const Login = () => {
               padding: "15px",
               background: loading
                 ? "#ccc"
-                : "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-              color: "white",
+                : "linear-gradient(135deg, #F2C94C 0%, #8D1B3D 100%)",
+              color: "#2D2D2D",
+              boxShadow: "0 10px 30px rgba(141, 27, 61, 0.35)",
               border: "none",
               borderRadius: "8px",
               fontSize: "16px",
@@ -166,7 +169,7 @@ const Login = () => {
               if (!loading) {
                 e.target.style.transform = "translateY(-2px)";
                 e.target.style.boxShadow =
-                  "0 5px 15px rgba(102, 126, 234, 0.4)";
+                  "0 15px 40px rgba(141, 27, 61, 0.55)";
               }
             }}
             onMouseLeave={(e) => {
@@ -189,14 +192,14 @@ const Login = () => {
           <p
             style={{
               margin: "0 0 10px 0",
-              color: "#666",
+              color: "#2D2D2D",
               fontSize: "14px",
             }}
           >
             <a
               href="/forgot-password"
               style={{
-                color: "#667eea",
+                color: "#8D1B3D",
                 textDecoration: "none",
                 fontWeight: "500",
               }}
@@ -211,7 +214,7 @@ const Login = () => {
           <p
             style={{
               margin: "0",
-              color: "#666",
+              color: "#2D2D2D",
               fontSize: "14px",
             }}
           >
@@ -219,7 +222,7 @@ const Login = () => {
             <a
               href="/register"
               style={{
-                color: "#667eea",
+                color: "#8D1B3D",
                 textDecoration: "none",
                 fontWeight: "500",
               }}

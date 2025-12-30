@@ -9,7 +9,7 @@ const OrdersManagement = () => {
       const token = localStorage.getItem("token");
       console.log("TOKEN:", token);
       const response = await axios.get(
-        "http://localhost:5002/api/admin/orders",
+        `${import.meta.env.VITE_API_URL}/api/admin/orders`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -36,7 +36,7 @@ const OrdersManagement = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:5002/api/admin/orders/${orderId}/status`,
+        `${import.meta.env.VITE_API_URL}/api/admin/orders/${orderId}/status`,
         {
           status: newStatus,
         },
@@ -53,17 +53,17 @@ const OrdersManagement = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case "Order Received":
-        return "yellow";
+        return "#F2C94C";
       case "In Kitchen":
-        return "orange";
+        return "#8D1B3D";
       case "Out for Delivery":
-        return "blue";
+        return "#2F855A";
       case "Delivered":
-        return "green";
+        return "#2D2D2D";
       case "Cancelled":
-        return "red";
+        return "#8D1B3D";
       default:
-        return "gray";
+        return "#2D2D2D";
     }
   };
 
@@ -71,8 +71,8 @@ const OrdersManagement = () => {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #2c3e50 0%, #34495e 100%)",
-        padding: "120px 20px 20px 20px", // Increased top padding for better navbar separation
+        background: "linear-gradient(135deg, #2D2D2D 0%, #8D1B3D 100%)",
+        padding: "140px 20px 20px 20px", // Increased top padding for better navbar separation
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
     >
@@ -80,21 +80,22 @@ const OrdersManagement = () => {
         style={{
           maxWidth: "1400px",
           margin: "0 auto",
-          background: "rgba(255, 255, 255, 0.1)",
+          background: "rgba(250, 247, 242, 0.08)",
           backdropFilter: "blur(10px)",
           borderRadius: "20px",
           padding: "40px",
-          boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
-          border: "1px solid rgba(255, 255, 255, 0.18)",
+          boxShadow: "0 30px 70px rgba(0,0,0,0.6)",
+          border: "1px solid rgba(242, 201, 76, 0.35)",
         }}
       >
         <h2
           style={{
-            color: "white",
+            color: "#F2C94C",
             textAlign: "center",
             marginBottom: "40px",
             fontSize: "2.5rem",
-            fontWeight: "300",
+            fontWeight: "600",
+            letterSpacing: "0.6px",
             textShadow: "0 2px 4px rgba(0,0,0,0.3)",
           }}
         >
@@ -112,18 +113,18 @@ const OrdersManagement = () => {
             <div
               key={order._id}
               style={{
-                background: "rgba(255, 255, 255, 0.15)",
+                background: "rgba(250, 247, 242, 0.12)",
                 backdropFilter: "blur(10px)",
                 borderRadius: "15px",
                 padding: "25px",
                 boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-                border: "1px solid rgba(255, 255, 255, 0.2)",
+                border: "1px solid rgba(242, 201, 76, 0.35)",
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-3px)";
                 e.currentTarget.style.boxShadow =
-                  "0 6px 25px rgba(0, 0, 0, 0.15)";
+                  "0 10px 35px rgba(0,0,0,0.45)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "translateY(0)";
@@ -141,7 +142,7 @@ const OrdersManagement = () => {
               >
                 <h3
                   style={{
-                    color: "white",
+                    color: "#8D1B3D",
                     margin: "0",
                     fontSize: "1.4rem",
                     fontWeight: "500",
@@ -152,12 +153,12 @@ const OrdersManagement = () => {
                 </h3>
                 <span
                   style={{
-                    color: getStatusColor(order.status),
+                    color: "#2D2D2D",
                     fontWeight: "600",
                     padding: "6px 12px",
                     borderRadius: "20px",
                     fontSize: "0.85rem",
-                    background: "rgba(255, 255, 255, 0.2)",
+                    background: "rgba(250, 247, 242, 0.9)",
                     textShadow: "0 1px 2px rgba(0,0,0,0.3)",
                   }}
                 >
@@ -168,17 +169,17 @@ const OrdersManagement = () => {
               <div style={{ marginBottom: "15px" }}>
                 <p
                   style={{
-                    color: "rgba(255, 255, 255, 0.8)",
+                    color: "#8D1B3D",
                     margin: "0 0 5px 0",
                     fontSize: "0.9rem",
-                    fontWeight: "500",
+                    fontWeight: "600",
                   }}
                 >
                   Customer:
                 </p>
                 <p
                   style={{
-                    color: "white",
+                    color: "#2D2D2D",
                     margin: "0",
                     fontSize: "1rem",
                     textShadow: "0 1px 2px rgba(0,0,0,0.3)",
@@ -191,17 +192,17 @@ const OrdersManagement = () => {
               <div style={{ marginBottom: "15px" }}>
                 <p
                   style={{
-                    color: "rgba(255, 255, 255, 0.8)",
+                    color: "#8D1B3D",
                     margin: "0 0 5px 0",
                     fontSize: "0.9rem",
-                    fontWeight: "500",
+                    fontWeight: "600",
                   }}
                 >
                   Total Amount:
                 </p>
                 <p
                   style={{
-                    color: "white",
+                    color: "#2D2D2D",
                     margin: "0",
                     fontSize: "1.2rem",
                     fontWeight: "600",
@@ -215,10 +216,10 @@ const OrdersManagement = () => {
               <div style={{ marginBottom: "15px" }}>
                 <p
                   style={{
-                    color: "rgba(255, 255, 255, 0.8)",
+                    color: "#8D1B3D",
                     margin: "0 0 5px 0",
                     fontSize: "0.9rem",
-                    fontWeight: "500",
+                    fontWeight: "600",
                   }}
                 >
                   Order Details:
@@ -226,7 +227,7 @@ const OrdersManagement = () => {
                 {order.items?.length > 0 ? (
                   <p
                     style={{
-                      color: "white",
+                      color: "#2D2D2D",
                       margin: "0",
                       fontSize: "0.95rem",
                       lineHeight: "1.4",
@@ -240,7 +241,7 @@ const OrdersManagement = () => {
                 ) : order.pizza ? (
                   <div
                     style={{
-                      color: "white",
+                      color: "#2D2D2D",
                       fontSize: "0.95rem",
                       lineHeight: "1.4",
                       textShadow: "0 1px 2px rgba(0,0,0,0.3)",
@@ -262,7 +263,7 @@ const OrdersManagement = () => {
                 ) : (
                   <p
                     style={{
-                      color: "rgba(255, 255, 255, 0.7)",
+                      color: "#2D2D2D",
                       margin: "0",
                       fontSize: "0.9rem",
                       fontStyle: "italic",
@@ -276,17 +277,17 @@ const OrdersManagement = () => {
               <div style={{ marginBottom: "20px" }}>
                 <p
                   style={{
-                    color: "rgba(255, 255, 255, 0.8)",
+                    color: "#8D1B3D",
                     margin: "0 0 5px 0",
                     fontSize: "0.9rem",
-                    fontWeight: "500",
+                    fontWeight: "600",
                   }}
                 >
                   Delivery Address:
                 </p>
                 <p
                   style={{
-                    color: "white",
+                    color: "#2D2D2D",
                     margin: "0",
                     fontSize: "0.95rem",
                     textShadow: "0 1px 2px rgba(0,0,0,0.3)",
@@ -308,8 +309,7 @@ const OrdersManagement = () => {
                   <button
                     onClick={() => handleStatusUpdate(order._id, "In Kitchen")}
                     style={{
-                      background:
-                        "linear-gradient(135deg, #f39c12 0%, #e67e22 100%)",
+                      background: "linear-gradient(135deg, #F2C94C 0%, #8D1B3D 100%)",
                       color: "white",
                       border: "none",
                       padding: "10px 20px",
@@ -318,19 +318,19 @@ const OrdersManagement = () => {
                       fontWeight: "600",
                       cursor: "pointer",
                       transition: "all 0.3s ease",
-                      boxShadow: "0 2px 8px rgba(243, 156, 18, 0.3)",
+                      boxShadow: "0 4px 12px rgba(141, 27, 61, 0.45)",
                       flex: "1",
                       minWidth: "120px",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = "translateY(-2px)";
                       e.target.style.boxShadow =
-                        "0 4px 12px rgba(243, 156, 18, 0.4)";
+                        "0 6px 15px rgba(141, 27, 61, 0.6)";
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = "translateY(0)";
                       e.target.style.boxShadow =
-                        "0 2px 8px rgba(243, 156, 18, 0.3)";
+                        "0 4px 12px rgba(141, 27, 61, 0.45)";
                     }}
                   >
                     Start Preparing
@@ -342,8 +342,7 @@ const OrdersManagement = () => {
                       handleStatusUpdate(order._id, "Out for Delivery")
                     }
                     style={{
-                      background:
-                        "linear-gradient(135deg, #3498db 0%, #2980b9 100%)",
+                      background: "linear-gradient(135deg, #2F855A 0%, #2D2D2D 100%)",
                       color: "white",
                       border: "none",
                       padding: "10px 20px",
@@ -352,19 +351,19 @@ const OrdersManagement = () => {
                       fontWeight: "600",
                       cursor: "pointer",
                       transition: "all 0.3s ease",
-                      boxShadow: "0 2px 8px rgba(52, 152, 219, 0.3)",
+                      boxShadow: "0 4px 12px rgba(47, 133, 90, 0.45)",
                       flex: "1",
                       minWidth: "120px",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = "translateY(-2px)";
                       e.target.style.boxShadow =
-                        "0 4px 12px rgba(52, 152, 219, 0.4)";
+                        "0 6px 15px rgba(47, 133, 90, 0.6)";
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = "translateY(0)";
                       e.target.style.boxShadow =
-                        "0 2px 8px rgba(52, 152, 219, 0.3)";
+                        "0 4px 12px rgba(47, 133, 90, 0.45)";
                     }}
                   >
                     Send to Delivery
@@ -374,8 +373,7 @@ const OrdersManagement = () => {
                   <button
                     onClick={() => handleStatusUpdate(order._id, "Delivered")}
                     style={{
-                      background:
-                        "linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)",
+                      background: "linear-gradient(135deg, #2D2D2D 0%, #2D2D2D 100%)",
                       color: "white",
                       border: "none",
                       padding: "10px 20px",
@@ -384,19 +382,19 @@ const OrdersManagement = () => {
                       fontWeight: "600",
                       cursor: "pointer",
                       transition: "all 0.3s ease",
-                      boxShadow: "0 2px 8px rgba(39, 174, 96, 0.3)",
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.6)",
                       flex: "1",
                       minWidth: "120px",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = "translateY(-2px)";
                       e.target.style.boxShadow =
-                        "0 4px 12px rgba(39, 174, 96, 0.4)";
+                        "0 6px 15px rgba(0,0,0,0.8)";
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = "translateY(0)";
                       e.target.style.boxShadow =
-                        "0 2px 8px rgba(39, 174, 96, 0.3)";
+                        "0 4px 12px rgba(0,0,0,0.6)";
                     }}
                   >
                     Mark Delivered
@@ -412,14 +410,15 @@ const OrdersManagement = () => {
             style={{
               textAlign: "center",
               padding: "60px 20px",
-              background: "rgba(255, 255, 255, 0.1)",
+              background: "rgba(250, 247, 242, 0.12)",
               borderRadius: "15px",
               backdropFilter: "blur(5px)",
+              border: "1px solid rgba(242, 201, 76, 0.35)",
             }}
           >
             <p
               style={{
-                color: "white",
+                color: "#2D2D2D",
                 fontSize: "1.2rem",
                 margin: "0",
                 opacity: "0.9",

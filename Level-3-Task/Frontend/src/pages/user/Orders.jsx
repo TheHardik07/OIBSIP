@@ -8,7 +8,7 @@ const Orders = () => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5001/api/orders", {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/orders`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setOrders(response.data);
@@ -23,17 +23,17 @@ const Orders = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case "Order Received":
-        return "yellow";
+        return "#F2C94C";
       case "In Kitchen":
-        return "orange";
+        return "#8D1B3D";
       case "Out for Delivery":
-        return "blue";
+        return "#2F855A";
       case "Delivered":
-        return "green";
+        return "#2F855A";
       case "Cancelled":
-        return "red";
+        return "#2D2D2D";
       default:
-        return "gray";
+        return "#8D1B3D";
     }
   };
 
@@ -41,7 +41,7 @@ const Orders = () => {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        background: "linear-gradient(135deg, #2D2D2D 0%, #8D1B3D 100%)",
         padding: "120px 20px 20px 20px", // Increased top padding for better navbar separation
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
@@ -50,22 +50,23 @@ const Orders = () => {
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
-          background: "rgba(255, 255, 255, 0.1)",
+          background: "rgba(250, 247, 242, 0.08)",
           backdropFilter: "blur(10px)",
           borderRadius: "20px",
           padding: "40px",
-          boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
-          border: "1px solid rgba(255, 255, 255, 0.18)",
+          boxShadow: "0 25px 60px rgba(0,0,0,0.55)",
+          border: "1px solid rgba(242, 201, 76, 0.35)",
         }}
       >
         <h2
           style={{
-            color: "white",
+            color: "#F2C94C",
             textAlign: "center",
             marginBottom: "30px",
             fontSize: "2.5rem",
-            fontWeight: "300",
+            fontWeight: "600",
             textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+            letterSpacing: "0.6px",
           }}
         >
           Your Orders
@@ -76,14 +77,15 @@ const Orders = () => {
             style={{
               textAlign: "center",
               padding: "60px 20px",
-              background: "rgba(255, 255, 255, 0.1)",
+              background: "rgba(250, 247, 242, 0.12)",
               borderRadius: "15px",
               backdropFilter: "blur(5px)",
+              border: "1px solid rgba(242, 201, 76, 0.35)",
             }}
           >
             <p
               style={{
-                color: "white",
+                color: "#2D2D2D",
                 fontSize: "1.2rem",
                 margin: "0",
                 opacity: "0.9",
@@ -93,9 +95,10 @@ const Orders = () => {
             </p>
             <p
               style={{
-                color: "rgba(255, 255, 255, 0.7)",
+                color: "#FAF7F2",
                 fontSize: "1rem",
                 margin: "10px 0 0 0",
+                fontWeight: "700",
               }}
             >
               Start building your perfect pizza!
@@ -113,33 +116,34 @@ const Orders = () => {
               <div
                 key={order._id}
                 style={{
-                  background: "rgba(255, 255, 255, 0.15)",
+                  background: "rgba(250, 247, 242, 0.12)",
                   backdropFilter: "blur(10px)",
                   borderRadius: "15px",
                   padding: "25px",
-                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  boxShadow: "0 15px 40px rgba(0,0,0,0.45)",
+                  border: "1px solid rgba(242, 201, 76, 0.35)",
                   transition: "transform 0.3s ease, box-shadow 0.3s ease",
                   cursor: "pointer",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-5px)";
                   e.currentTarget.style.boxShadow =
-                    "0 8px 30px rgba(0, 0, 0, 0.2)";
+                    "0 22px 55px rgba(0,0,0,0.6)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow =
-                    "0 4px 20px rgba(0, 0, 0, 0.1)";
+                    "0 15px 40px rgba(0,0,0,0.45)";
                 }}
               >
                 <h3
                   style={{
-                    color: "white",
+                    color: "#8D1B3D",
                     margin: "0 0 15px 0",
                     fontSize: "1.4rem",
-                    fontWeight: "500",
+                    fontWeight: "700",
                     textShadow: "0 1px 2px rgba(0,0,0,0.3)",
+                    letterSpacing: "0.4px",
                   }}
                 >
                   Order #{order._id.slice(-8)}
@@ -148,9 +152,9 @@ const Orders = () => {
                 <div style={{ marginBottom: "15px" }}>
                   <span
                     style={{
-                      color: "rgba(255, 255, 255, 0.8)",
+                      color: "#8D1B3D",
                       fontSize: "0.9rem",
-                      fontWeight: "500",
+                      fontWeight: "600",
                     }}
                   >
                     Status:
@@ -163,7 +167,7 @@ const Orders = () => {
                       padding: "4px 12px",
                       borderRadius: "20px",
                       fontSize: "0.85rem",
-                      background: "rgba(255, 255, 255, 0.2)",
+                      background: "rgba(250, 247, 242, 0.7)",
                       textShadow: "0 1px 2px rgba(0,0,0,0.3)",
                     }}
                   >
@@ -173,10 +177,10 @@ const Orders = () => {
 
                 <p
                   style={{
-                    color: "white",
+                    color: "#2D2D2D",
                     margin: "10px 0",
                     fontSize: "1.1rem",
-                    fontWeight: "500",
+                    fontWeight: "700",
                     textShadow: "0 1px 2px rgba(0,0,0,0.3)",
                   }}
                 >
@@ -187,17 +191,17 @@ const Orders = () => {
                   <div style={{ margin: "15px 0" }}>
                     <p
                       style={{
-                        color: "rgba(255, 255, 255, 0.8)",
+                        color: "#8D1B3D",
                         margin: "0 0 8px 0",
                         fontSize: "0.95rem",
-                        fontWeight: "500",
+                        fontWeight: "600",
                       }}
                     >
                       Items:
                     </p>
                     <p
                       style={{
-                        color: "white",
+                        color: "#2D2D2D",
                         margin: "0",
                         fontSize: "0.9rem",
                         lineHeight: "1.4",
@@ -213,17 +217,17 @@ const Orders = () => {
                   <div style={{ margin: "15px 0" }}>
                     <p
                       style={{
-                        color: "rgba(255, 255, 255, 0.8)",
+                        color: "#8D1B3D",
                         margin: "0 0 8px 0",
                         fontSize: "0.95rem",
-                        fontWeight: "500",
+                        fontWeight: "600",
                       }}
                     >
                       Custom Pizza:
                     </p>
                     <div
                       style={{
-                        color: "white",
+                        color: "#2D2D2D",
                         fontSize: "0.9rem",
                         lineHeight: "1.4",
                         textShadow: "0 1px 2px rgba(0,0,0,0.3)",
@@ -248,7 +252,7 @@ const Orders = () => {
                 {order.estimatedDeliveryTime && (
                   <p
                     style={{
-                      color: "rgba(255, 255, 255, 0.9)",
+                      color: "#2F855A",
                       margin: "15px 0 0 0",
                       fontSize: "0.9rem",
                       fontStyle: "italic",

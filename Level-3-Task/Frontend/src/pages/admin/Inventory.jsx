@@ -10,7 +10,7 @@ const Inventory = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:5002/api/admin/inventory",
+        `${import.meta.env.VITE_API_URL}/api/admin/inventory`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -32,7 +32,7 @@ const Inventory = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:5002/api/admin/inventory/${itemId}`,
+        `${import.meta.env.VITE_API_URL}/api/admin/inventory/${itemId}`,
         {
           quantity: parseInt(newQuantity),
         },
@@ -52,8 +52,8 @@ const Inventory = () => {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #2c3e50 0%, #34495e 100%)",
-        padding: "120px 20px 20px 20px", // Increased top padding for better navbar separation
+        background: "linear-gradient(135deg, #2D2D2D 0%, #8D1B3D 100%)",
+        padding: "140px 20px 20px 20px",
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
     >
@@ -61,22 +61,23 @@ const Inventory = () => {
         style={{
           maxWidth: "1400px",
           margin: "0 auto",
-          background: "rgba(255, 255, 255, 0.1)",
+          background: "rgba(250, 247, 242, 0.08)",
           backdropFilter: "blur(10px)",
           borderRadius: "20px",
           padding: "40px",
-          boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
-          border: "1px solid rgba(255, 255, 255, 0.18)",
+          boxShadow: "0 25px 60px rgba(0,0,0,0.55)",
+          border: "1px solid rgba(242, 201, 76, 0.35)",
         }}
       >
         <h2
           style={{
-            color: "white",
+            color: "#F2C94C",
             textAlign: "center",
             marginBottom: "40px",
             fontSize: "2.5rem",
-            fontWeight: "300",
+            fontWeight: "600",
             textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+            letterSpacing: "0.6px",
           }}
         >
           Inventory Management
@@ -84,12 +85,12 @@ const Inventory = () => {
 
         <div
           style={{
-            background: "rgba(255, 255, 255, 0.15)",
+            background: "rgba(250, 247, 242, 0.12)",
             backdropFilter: "blur(10px)",
             borderRadius: "15px",
             padding: "30px",
-            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
+            boxShadow: "0 15px 40px rgba(0,0,0,0.45)",
+            border: "1px solid rgba(242, 201, 76, 0.35)",
             overflowX: "auto",
           }}
         >
@@ -103,8 +104,8 @@ const Inventory = () => {
             <thead>
               <tr
                 style={{
-                  background: "rgba(255, 255, 255, 0.1)",
-                  borderBottom: "2px solid rgba(255, 255, 255, 0.2)",
+                  background: "rgba(242, 201, 76, 0.25)",
+                  borderBottom: "2px solid rgba(242, 201, 76, 0.3)",
                 }}
               >
                 {[
@@ -120,11 +121,11 @@ const Inventory = () => {
                     style={{
                       padding: "15px 20px",
                       textAlign: "left",
-                      color: "white",
-                      fontWeight: "600",
+                      color: "#2D2D2D",
+                      fontWeight: "700",
                       fontSize: "1rem",
                       textShadow: "0 1px 2px rgba(0,0,0,0.3)",
-                      borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+                      borderRight: "1px solid rgba(242, 201, 76, 0.1)",
                     }}
                   >
                     {header}
@@ -139,28 +140,28 @@ const Inventory = () => {
                   style={{
                     background:
                       index % 2 === 0
-                        ? "rgba(255, 255, 255, 0.05)"
-                        : "rgba(255, 255, 255, 0.08)",
-                    borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+                        ? "rgba(250, 247, 242, 0.05)"
+                        : "rgba(250, 247, 242, 0.08)",
+                    borderBottom: "1px solid rgba(242, 201, 76, 0.1)",
                     transition: "background-color 0.3s ease",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background =
-                      "rgba(255, 255, 255, 0.12)";
+                      "rgba(141, 27, 61, 0.25)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background =
                       index % 2 === 0
-                        ? "rgba(255, 255, 255, 0.05)"
-                        : "rgba(255, 255, 255, 0.08)";
+                        ? "rgba(250, 247, 242, 0.05)"
+                        : "rgba(250, 247, 242, 0.08)";
                   }}
                 >
                   <td
                     style={{
                       padding: "15px 20px",
-                      color: "white",
+                      color: "black",
                       textShadow: "0 1px 2px rgba(0,0,0,0.3)",
-                      fontWeight: "500",
+                      fontWeight: "600",
                     }}
                   >
                     {item.name}
@@ -168,7 +169,7 @@ const Inventory = () => {
                   <td
                     style={{
                       padding: "15px 20px",
-                      color: "rgba(255, 255, 255, 0.9)",
+                      color: "black",
                       textShadow: "0 1px 2px rgba(0,0,0,0.3)",
                     }}
                   >
@@ -183,21 +184,20 @@ const Inventory = () => {
                         style={{
                           padding: "8px 12px",
                           borderRadius: "6px",
-                          border: "1px solid rgba(255, 255, 255, 0.3)",
-                          background: "rgba(255, 255, 255, 0.1)",
-                          color: "white",
+                          border: "1px solid rgba(242, 201, 76, 0.3)",
+                          background: "#FAF7F2",
+                          color: "#2D2D2D",
                           fontSize: "0.9rem",
                           width: "80px",
                           outline: "none",
                           textAlign: "center",
                         }}
                         onFocus={(e) =>
-                          (e.target.style.borderColor =
-                            "rgba(255, 255, 255, 0.6)")
+                          (e.target.style.borderColor = "#F2C94C")
                         }
                         onBlur={(e) =>
                           (e.target.style.borderColor =
-                            "rgba(255, 255, 255, 0.3)")
+                            "rgba(242, 201, 76, 0.3)")
                         }
                       />
                     ) : (
@@ -205,11 +205,11 @@ const Inventory = () => {
                         style={{
                           color:
                             item.quantity <= item.minThreshold
-                              ? "#e74c3c"
-                              : "white",
+                              ? "#8D1B3D"
+                              : "black",
                           fontWeight:
                             item.quantity <= item.minThreshold
-                              ? "600"
+                              ? "700"
                               : "normal",
                           textShadow: "0 1px 2px rgba(0,0,0,0.3)",
                         }}
@@ -222,7 +222,7 @@ const Inventory = () => {
                   <td
                     style={{
                       padding: "15px 20px",
-                      color: "rgba(255, 255, 255, 0.9)",
+                      color: "black",
                       textShadow: "0 1px 2px rgba(0,0,0,0.3)",
                     }}
                   >
@@ -231,8 +231,8 @@ const Inventory = () => {
                   <td
                     style={{
                       padding: "15px 20px",
-                      color: "white",
-                      fontWeight: "500",
+                      color: "black",
+                      fontWeight: "600",
                       textShadow: "0 1px 2px rgba(0,0,0,0.3)",
                     }}
                   >
@@ -245,8 +245,8 @@ const Inventory = () => {
                           onClick={() => handleUpdateQuantity(item._id)}
                           style={{
                             background:
-                              "linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)",
-                            color: "white",
+                              "linear-gradient(135deg, #2F855A 0%, #2D2D2D 100%)",
+                            color: "#FAF7F2",
                             border: "none",
                             padding: "6px 12px",
                             borderRadius: "6px",
@@ -254,17 +254,17 @@ const Inventory = () => {
                             fontWeight: "600",
                             cursor: "pointer",
                             transition: "all 0.3s ease",
-                            boxShadow: "0 2px 8px rgba(39, 174, 96, 0.3)",
+                            boxShadow: "0 2px 8px rgba(47, 133, 90, 0.3)",
                           }}
                           onMouseEnter={(e) => {
                             e.target.style.transform = "translateY(-1px)";
                             e.target.style.boxShadow =
-                              "0 4px 12px rgba(39, 174, 96, 0.4)";
+                              "0 4px 12px rgba(47, 133, 90, 0.4)";
                           }}
                           onMouseLeave={(e) => {
                             e.target.style.transform = "translateY(0)";
                             e.target.style.boxShadow =
-                              "0 2px 8px rgba(39, 174, 96, 0.3)";
+                              "0 2px 8px rgba(47, 133, 90, 0.3)";
                           }}
                         >
                           Save
@@ -272,9 +272,8 @@ const Inventory = () => {
                         <button
                           onClick={() => setEditingItem(null)}
                           style={{
-                            background:
-                              "linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%)",
-                            color: "white",
+                            background: "#2D2D2D",
+                            color: "#FAF7F2",
                             border: "none",
                             padding: "6px 12px",
                             borderRadius: "6px",
@@ -282,17 +281,17 @@ const Inventory = () => {
                             fontWeight: "600",
                             cursor: "pointer",
                             transition: "all 0.3s ease",
-                            boxShadow: "0 2px 8px rgba(149, 165, 166, 0.3)",
+                            boxShadow: "0 2px 8px rgba(45, 45, 45, 0.3)",
                           }}
                           onMouseEnter={(e) => {
                             e.target.style.transform = "translateY(-1px)";
                             e.target.style.boxShadow =
-                              "0 4px 12px rgba(149, 165, 166, 0.4)";
+                              "0 4px 12px rgba(45, 45, 45, 0.4)";
                           }}
                           onMouseLeave={(e) => {
                             e.target.style.transform = "translateY(0)";
                             e.target.style.boxShadow =
-                              "0 2px 8px rgba(149, 165, 166, 0.3)";
+                              "0 2px 8px rgba(45, 45, 45, 0.3)";
                           }}
                         >
                           Cancel
@@ -306,8 +305,8 @@ const Inventory = () => {
                         }}
                         style={{
                           background:
-                            "linear-gradient(135deg, #3498db 0%, #2980b9 100%)",
-                          color: "white",
+                            "linear-gradient(135deg, #F2C94C 0%, #8D1B3D 100%)",
+                          color: "#2D2D2D",
                           border: "none",
                           padding: "8px 16px",
                           borderRadius: "8px",
@@ -315,17 +314,17 @@ const Inventory = () => {
                           fontWeight: "600",
                           cursor: "pointer",
                           transition: "all 0.3s ease",
-                          boxShadow: "0 2px 8px rgba(52, 152, 219, 0.3)",
+                          boxShadow: "0 2px 8px rgba(141, 27, 61, 0.3)",
                         }}
                         onMouseEnter={(e) => {
                           e.target.style.transform = "translateY(-1px)";
                           e.target.style.boxShadow =
-                            "0 4px 12px rgba(52, 152, 219, 0.4)";
+                            "0 4px 12px rgba(141, 27, 61, 0.4)";
                         }}
                         onMouseLeave={(e) => {
                           e.target.style.transform = "translateY(0)";
                           e.target.style.boxShadow =
-                            "0 2px 8px rgba(52, 152, 219, 0.3)";
+                            "0 2px 8px rgba(141, 27, 61, 0.3)";
                         }}
                       >
                         Edit

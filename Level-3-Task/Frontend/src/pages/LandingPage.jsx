@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   const featureGradients = [
-    "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-    "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-    "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+    "linear-gradient(135deg, #8D1B3D 0%, #2D2D2D 100%)",
+    "linear-gradient(135deg, #2F855A 0%, #2D2D2D 100%)",
+    "linear-gradient(135deg, #F2C94C 0%, #8D1B3D 100%)",
   ];
 
   const features = [
@@ -31,13 +31,18 @@ const LandingPage = () => {
 
   return (
     <div
-      style={{ fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}
+      style={{
+        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        backgroundColor: "#FAF7F2",
+        color: "#2D2D2D",
+      }}
     >
       {/* Hero Section */}
       <section
         style={{
           minHeight: "100vh",
-          background: "linear-gradient(135deg, #F2C94C 0%, #2F855A 100%)",
+          //   background: "linear-gradient(135deg, #F2C94C 0%, #2F855A 100%)",
+          background: "linear-gradient(135deg, #8D1B3D 0%, #2F855A 100%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -80,7 +85,7 @@ const LandingPage = () => {
               lineHeight: "1.2",
             }}
           >
-            Welcome to <span style={{ color: "#8D1B3D" }}>Pizza Palace</span>
+            Welcome to <span style={{ color: "#F2C94C" }}>Pizza Palace</span>
           </h1>
           <p
             style={{
@@ -109,8 +114,8 @@ const LandingPage = () => {
               <button
                 style={{
                   background:
-                    "linear-gradient(135deg, #FF6B6B 0%, #FFA500 100%)",
-                  color: "white",
+                    "linear-gradient(135deg, #F2C94C 0%, #8D1B3D 100%)",
+                  color: "#2D2D2D",
                   border: "none",
                   padding: "15px 40px",
                   borderRadius: "50px",
@@ -118,18 +123,18 @@ const LandingPage = () => {
                   fontWeight: "600",
                   cursor: "pointer",
                   transition: "all 0.3s ease",
-                  boxShadow: "0 8px 25px rgba(255, 107, 107, 0.3)",
+                  boxShadow: "0 8px 25px rgba(141, 27, 61, 0.35)",
                   textDecoration: "none",
                   display: "inline-block",
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = "translateY(-3px)";
-                  e.target.style.boxShadow =
+                  e.currentTarget.style.transform = "translateY(-3px)";
+                  e.currentTarget.style.boxShadow =
                     "0 12px 35px rgba(255, 107, 107, 0.4)";
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = "translateY(0)";
-                  e.target.style.boxShadow =
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
                     "0 8px 25px rgba(255, 107, 107, 0.3)";
                 }}
               >
@@ -140,9 +145,9 @@ const LandingPage = () => {
             <Link to="/login">
               <button
                 style={{
-                  background: "rgba(255, 255, 255, 0.1)",
-                  color: "white",
-                  border: "2px solid rgba(255, 255, 255, 0.3)",
+                  background: "rgba(250, 247, 242, 0.15)",
+                  border: "2px solid #F2C94C",
+                  color: "#FAF7F2",
                   padding: "15px 40px",
                   borderRadius: "50px",
                   fontSize: "1.1rem",
@@ -154,14 +159,16 @@ const LandingPage = () => {
                   display: "inline-block",
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = "rgba(255, 255, 255, 0.2)";
-                  e.target.style.borderColor = "rgba(255, 255, 255, 0.5)";
-                  e.target.style.transform = "translateY(-3px)";
+                  e.currentTarget.style.background =
+                    "rgba(250, 247, 242, 0.25)";
+                  e.currentTarget.style.borderColor = "#8D1B3D";
+                  e.currentTarget.style.transform = "translateY(-3px)";
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = "rgba(255, 255, 255, 0.1)";
-                  e.target.style.borderColor = "rgba(255, 255, 255, 0.3)";
-                  e.target.style.transform = "translateY(0)";
+                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
+                  e.currentTarget.style.borderColor =
+                    "rgba(255, 255, 255, 0.3)";
+                  e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
                 Sign In
@@ -175,7 +182,8 @@ const LandingPage = () => {
       <section
         style={{
           padding: "80px 20px",
-          background: "white",
+          //   background: "white",
+          background: "#FAF7F2",
           textAlign: "center",
         }}
       >
@@ -184,8 +192,11 @@ const LandingPage = () => {
             style={{
               fontSize: "2.5rem",
               fontWeight: "700",
-              color: "#8D1B3D",
+              color: "#2D2D2D",
               marginBottom: "60px",
+              borderBottom: "4px solid #F2C94C",
+              display: "inline-block",
+              paddingBottom: "10px",
             }}
           >
             Why Choose Pizza Palace?
@@ -209,10 +220,10 @@ const LandingPage = () => {
                   transition: "transform 0.3s ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = "translateY(-10px)";
+                  e.currentTarget.style.transform = "translateY(-10px)";
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = "translateY(0)";
+                  e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
                 <div className="emoji-feature">
@@ -234,9 +245,9 @@ const LandingPage = () => {
       <section
         style={{
           padding: "80px 20px",
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
           textAlign: "center",
-          color: "white",
+          background: "linear-gradient(135deg, #2D2D2D 0%, #8D1B3D 100%)",
+          color: "#FAF7F2",
         }}
       >
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
@@ -245,7 +256,10 @@ const LandingPage = () => {
               fontSize: "2.5rem",
               fontWeight: "700",
               marginBottom: "20px",
-              color: "#8D1B3D",
+              color: "#F2C94C",
+              borderBottom: "4px solid #F2C94C",
+              display: "inline-block",
+              paddingBottom: "8px",
             }}
           >
             Popular Favorites
@@ -316,18 +330,23 @@ const LandingPage = () => {
               <div
                 key={index}
                 style={{
-                  background: "rgba(255, 255, 255, 0.1)",
                   backdropFilter: "blur(10px)",
                   borderRadius: "15px",
                   padding: "30px 20px",
-                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  background: "rgba(250, 247, 242, 0.08)",
+                  border: "1px solid rgba(242, 201, 76, 0.35)",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
                   transition: "transform 0.3s ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = "translateY(-5px)";
+                  //   e.target.style.transform = "translateY(-5px)";
+                  e.currentTarget.style.transform =
+                    "translateY(-8px) scale(1.02)";
+                  e.currentTarget.style.boxShadow =
+                    "0 18px 45px rgba(0,0,0,0.45)";
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = "translateY(0)";
+                  e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
                 <div className="emoji-pizza">{pizza.emoji}</div>
@@ -335,12 +354,21 @@ const LandingPage = () => {
                   style={{
                     fontSize: "1.3rem",
                     margin: "0 0 10px 0",
-                    fontWeight: "600",
+                    fontWeight: "700",
+                    color: "#F2C94C",
+                    letterSpacing: "0.5px",
                   }}
                 >
                   {pizza.name}
                 </h3>
-                <p style={{ margin: 0, opacity: 0.8, fontSize: "0.9rem" }}>
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: "0.9rem",
+                    opacity: 0.9,
+                    color: "#FAF7F2",
+                  }}
+                >
                   {pizza.desc}
                 </p>
               </div>
@@ -353,7 +381,7 @@ const LandingPage = () => {
       <section
         style={{
           padding: "80px 20px",
-          background: "white",
+          background: "#FAF7F2",
           textAlign: "center",
         }}
       >
@@ -362,7 +390,7 @@ const LandingPage = () => {
             style={{
               fontSize: "2.5rem",
               fontWeight: "700",
-              color: "#8D1B3D",
+              color: "#2D2D2D",
               marginBottom: "20px",
             }}
           >
@@ -383,8 +411,9 @@ const LandingPage = () => {
           <Link to="/register">
             <button
               style={{
-                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                color: "white",
+                background: "linear-gradient(135deg, #F2C94C 0%, #8D1B3D 100%)",
+                color: "#2D2D2D",
+                boxShadow: "0 10px 30px rgba(141, 27, 61, 0.35)",
                 border: "none",
                 padding: "18px 50px",
                 borderRadius: "50px",
@@ -392,18 +421,17 @@ const LandingPage = () => {
                 fontWeight: "600",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
-                boxShadow: "0 8px 25px rgba(102, 126, 234, 0.3)",
                 textDecoration: "none",
                 display: "inline-block",
               }}
               onMouseEnter={(e) => {
-                e.target.style.transform = "translateY(-3px)";
-                e.target.style.boxShadow =
-                  "0 12px 35px rgba(102, 126, 234, 0.4)";
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow =
+                  "0 16px 40px rgba(141, 27, 61, 0.45)";
               }}
               onMouseLeave={(e) => {
-                e.target.style.transform = "translateY(0)";
-                e.target.style.boxShadow =
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow =
                   "0 8px 25px rgba(102, 126, 234, 0.3)";
               }}
             >
@@ -416,7 +444,7 @@ const LandingPage = () => {
       {/* Footer */}
       <footer
         style={{
-          background: "#2F855A",
+          background: "#2D2D2D",
           color: "white",
           padding: "40px 20px",
           textAlign: "center",
@@ -437,7 +465,7 @@ const LandingPage = () => {
                 width: "50px",
                 height: "50px",
                 borderRadius: "50%",
-                background: "linear-gradient(135deg, #FF6B6B 0%, #FFA500 100%)",
+                background: "linear-gradient(135deg, #F2C94C 0%, #8D1B3D 100%)",
                 display: "flex",
                 color: "black",
                 alignItems: "center",
@@ -453,7 +481,7 @@ const LandingPage = () => {
                 margin: 0,
                 fontSize: "1.5rem",
                 fontWeight: "600",
-                color: "#8D1B3D",
+                color: "#F2C94C",
               }}
             >
               Pizza Palace
@@ -476,26 +504,26 @@ const LandingPage = () => {
           >
             <Link
               to="/login"
-              style={{ color: "#8D1B3D", textDecoration: "none" }}
+              style={{ color: "#F2C94C", textDecoration: "none" }}
             >
               Sign In
             </Link>
             <Link
               to="/register"
-              style={{ color: "#8D1B3D", textDecoration: "none" }}
+              style={{ color: "#F2C94C", textDecoration: "none" }}
             >
               Sign Up
             </Link>
             <a
               href="#"
-              style={{ color: "#8D1B3D", textDecoration: "none" }}
+              style={{ color: "#F2C94C", textDecoration: "none" }}
               onClick={(e) => e.preventDefault()}
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              style={{ color: "#8D1B3D", textDecoration: "none" }}
+              style={{ color: "#F2C94C", textDecoration: "none" }}
               onClick={(e) => e.preventDefault()}
             >
               Terms of Service

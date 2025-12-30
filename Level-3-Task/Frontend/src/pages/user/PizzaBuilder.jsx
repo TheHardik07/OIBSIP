@@ -120,7 +120,7 @@ export default function PizzaBuilder() {
       <div
         style={{
           minHeight: "100vh",
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          background: "linear-gradient(135deg, #2D2D2D 0%, #8D1B3D 100%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -129,12 +129,12 @@ export default function PizzaBuilder() {
       >
         <div
           style={{
-            background: "rgba(255, 255, 255, 0.1)",
-            backdropFilter: "blur(10px)",
+            background: "rgba(250, 247, 242, 0.08)",
+            backdropFilter: "blur(15px)",
             borderRadius: "20px",
             padding: "40px",
-            boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
-            border: "1px solid rgba(255, 255, 255, 0.18)",
+            boxShadow: "0 20px 50px rgba(0,0,0,0.45)",
+            border: "1px solid rgba(242, 201, 76, 0.35)",
             textAlign: "center",
           }}
         >
@@ -143,7 +143,7 @@ export default function PizzaBuilder() {
               width: "50px",
               height: "50px",
               border: "4px solid rgba(255, 255, 255, 0.3)",
-              borderTop: "4px solid white",
+              borderTop: "4px solid #F2C94C",
               borderRadius: "50%",
               animation: "spin 1s linear infinite",
               margin: "0 auto 20px auto",
@@ -174,7 +174,7 @@ export default function PizzaBuilder() {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        background: "linear-gradient(135deg, #2D2D2D 0%, #8D1B3D 100%)",
         padding: "120px 20px 20px 20px", // Increased top padding for better navbar separation
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
@@ -183,12 +183,12 @@ export default function PizzaBuilder() {
         style={{
           maxWidth: "900px",
           margin: "0 auto",
-          background: "rgba(255, 255, 255, 0.1)",
-          backdropFilter: "blur(10px)",
+          background: "rgba(250, 247, 242, 0.08)",
+          backdropFilter: "blur(15px)",
           borderRadius: "20px",
           padding: "40px",
-          boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
-          border: "1px solid rgba(255, 255, 255, 0.18)",
+          boxShadow: "0 25px 60px rgba(0,0,0,0.55)",
+          border: "1px solid rgba(242, 201, 76, 0.35)",
         }}
       >
         {/* Progress Indicator */}
@@ -225,7 +225,7 @@ export default function PizzaBuilder() {
                   borderRadius: "50%",
                   background:
                     step >= stepInfo.num
-                      ? "linear-gradient(135deg, #4CAF50 0%, #45a049 100%)"
+                      ? "linear-gradient(135deg, #F2C94C 0%, #8D1B3D 100%)"
                       : "rgba(255, 255, 255, 0.2)",
                   color: "white",
                   display: "flex",
@@ -236,7 +236,7 @@ export default function PizzaBuilder() {
                   transition: "all 0.3s ease",
                   boxShadow:
                     step >= stepInfo.num
-                      ? "0 4px 15px rgba(76, 175, 80, 0.3)"
+                      ? "0 6px 20px rgba(141, 27, 61, 0.45)"
                       : "none",
                   border: "2px solid rgba(255, 255, 255, 0.3)",
                 }}
@@ -262,13 +262,13 @@ export default function PizzaBuilder() {
         {/* Step Content */}
         <div
           style={{
-            background: "rgba(255, 255, 255, 0.15)",
+            background: "rgba(250, 247, 242, 0.12)",
             backdropFilter: "blur(10px)",
             borderRadius: "15px",
             padding: "30px",
             marginBottom: "30px",
-            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
+            boxShadow: "0 15px 40px rgba(0,0,0,0.45)",
+            border: "1px solid rgba(242, 201, 76, 0.35)",
             minHeight: "300px",
           }}
         >
@@ -333,8 +333,8 @@ export default function PizzaBuilder() {
               background:
                 step === 1
                   ? "rgba(255, 255, 255, 0.2)"
-                  : "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-              color: "white",
+                  : "linear-gradient(135deg, #2D2D2D 0%, #8D1B3D 100%)",
+              color: "#FAF7F2",
               border: "none",
               borderRadius: "25px",
               cursor: step === 1 ? "not-allowed" : "pointer",
@@ -342,7 +342,7 @@ export default function PizzaBuilder() {
               fontWeight: "600",
               transition: "all 0.3s ease",
               boxShadow:
-                step === 1 ? "none" : "0 4px 15px rgba(102, 126, 234, 0.3)",
+                step === 1 ? "none" : "0 6px 20px rgba(0,0,0,0.55)",
               textShadow: "0 1px 2px rgba(0,0,0,0.3)",
               minWidth: "100px",
             }}
@@ -350,14 +350,14 @@ export default function PizzaBuilder() {
               if (step !== 1) {
                 e.target.style.transform = "translateY(-2px)";
                 e.target.style.boxShadow =
-                  "0 6px 20px rgba(102, 126, 234, 0.4)";
+                  "0 8px 25px rgba(0,0,0,0.65)";
               }
             }}
             onMouseLeave={(e) => {
               if (step !== 1) {
                 e.target.style.transform = "translateY(0)";
                 e.target.style.boxShadow =
-                  "0 4px 15px rgba(102, 126, 234, 0.3)";
+                  "0 6px 20px rgba(0,0,0,0.55)";
               }
             }}
           >
@@ -366,10 +366,10 @@ export default function PizzaBuilder() {
 
           <div
             style={{
-              background: "rgba(255, 255, 255, 0.2)",
+              background: "rgba(250, 247, 242, 0.12)",
               padding: "8px 20px",
               borderRadius: "20px",
-              border: "1px solid rgba(255, 255, 255, 0.3)",
+              border: "1px solid rgba(242, 201, 76, 0.35)",
             }}
           >
             <span
@@ -392,8 +392,8 @@ export default function PizzaBuilder() {
               background:
                 step === 5
                   ? "rgba(255, 255, 255, 0.2)"
-                  : "linear-gradient(135deg, #4CAF50 0%, #45a049 100%)",
-              color: "white",
+                  : "linear-gradient(135deg, #F2C94C 0%, #8D1B3D 100%)",
+              color: "#2D2D2D",
               border: "none",
               borderRadius: "25px",
               cursor: step === 5 ? "not-allowed" : "pointer",
@@ -401,20 +401,20 @@ export default function PizzaBuilder() {
               fontWeight: "600",
               transition: "all 0.3s ease",
               boxShadow:
-                step === 5 ? "none" : "0 4px 15px rgba(76, 175, 80, 0.3)",
+                step === 5 ? "none" : "0 6px 20px rgba(141, 27, 61, 0.55)",
               textShadow: "0 1px 2px rgba(0,0,0,0.3)",
               minWidth: "100px",
             }}
             onMouseEnter={(e) => {
               if (step !== 5) {
                 e.target.style.transform = "translateY(-2px)";
-                e.target.style.boxShadow = "0 6px 20px rgba(76, 175, 80, 0.4)";
+                e.target.style.boxShadow = "0 8px 25px rgba(141, 27, 61, 0.65)";
               }
             }}
             onMouseLeave={(e) => {
               if (step !== 5) {
                 e.target.style.transform = "translateY(0)";
-                e.target.style.boxShadow = "0 4px 15px rgba(76, 175, 80, 0.3)";
+                e.target.style.boxShadow = "0 6px 20px rgba(141, 27, 61, 0.55)";
               }
             }}
           >

@@ -1,3 +1,18 @@
+/* Brand Variables */
+:root {
+  /* Pizza Palace Brand */
+  --wine: #8d1b3d;
+  --gold: #f2c94c;
+  --dark: #2d2d2d;
+  --offwhite: #faf7f2;
+  --olive: #2f855a;
+
+  /* Glass */
+  --glass-bg: rgba(250, 247, 242, 0.08);
+  --glass-border: rgba(242, 201, 76, 0.35);
+  --glass-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+}
+
 /* Basic reset and global styles */
 * {
   margin: 0;
@@ -6,10 +21,10 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: #333;
-  background-color: #f4f4f4;
+  color: var(--dark);
+  background: transparent;
 }
 
 /* Bounce animation for pizza emoji */
@@ -35,8 +50,8 @@ body {
   margin-bottom: 20px;
   animation: bounce 2s infinite;
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4))
-    drop-shadow(0 2px 4px rgba(255, 107, 107, 0.3));
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 107, 107, 0.2);
+    drop-shadow(0 2px 4px rgba(242, 201, 76, 0.35));
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(141, 27, 61, 0.25);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   background: radial-gradient(
     circle,
@@ -52,8 +67,8 @@ body {
 .emoji-hero:hover {
   transform: scale(1.15) rotate(5deg);
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5))
-    drop-shadow(0 4px 8px rgba(255, 107, 107, 0.4));
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 107, 107, 0.3);
+    drop-shadow(0 4px 8px rgba(242, 201, 76, 0.45));
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), 0 0 30px rgba(141, 27, 61, 0.35);
 }
 
 .emoji-feature {
@@ -166,38 +181,14 @@ body {
   padding: 20px;
 }
 
-/* Navbar */
-.navbar {
-  background-color: #333;
-  color: white;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-}
-
-.navbar button {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
 /* Forms */
 form {
   max-width: 400px;
   margin: 20px auto;
   padding: 20px;
-  background-color: white;
+  background: transparent;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 input,
@@ -207,19 +198,19 @@ button {
   width: 100%;
   margin-bottom: 10px;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
 }
 
 button {
-  background-color: #007bff;
+  background-color: var(--wine);
   color: white;
   border: none;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: var(--dark);
 }
 
 button:disabled {
@@ -244,7 +235,9 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
-  background-color: white;
+  background-color: var(--offwhite);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 table th,
@@ -255,7 +248,8 @@ table td {
 }
 
 table th {
-  background-color: #f8f9fa;
+  background-color: rgba(242, 201, 76, 0.2);
+  color: var(--dark);
 }
 
 /* Order items */
@@ -308,8 +302,8 @@ table th {
 
 /* Alerts */
 .low-stock-alerts {
-  background-color: #fff3cd;
-  border: 1px solid #ffeaa7;
+  background-color: rgba(242, 201, 76, 0.18);
+  border: 1px solid var(--gold);
   padding: 15px;
   margin: 20px 0;
   border-radius: 5px;
@@ -317,4 +311,71 @@ table th {
 
 .low-stock-alerts ul {
   margin-top: 10px;
+}
+
+/* Dashboard card image wrapper */
+.dashboard-card-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: all 0.35s ease;
+  position: relative;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+/* Actual image */
+.dashboard-card-img img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
+  transition: all 0.35s ease;
+}
+
+/* Hover effects */
+.dashboard-card:hover .dashboard-card-img {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  -webkit-transform: translateY(-5px) scale(1.05);
+  -moz-transform: translateY(-5px) scale(1.05);
+  -ms-transform: translateY(-5px) scale(1.05);
+  -o-transform: translateY(-5px) scale(1.05);
+}
+
+.dashboard-card:hover .dashboard-card-img img {
+  transform: scale(1.15) rotate(-1deg);
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.65));
+  -webkit-transform: scale(1.15) rotate(-1deg);
+  -moz-transform: scale(1.15) rotate(-1deg);
+  -ms-transform: scale(1.15) rotate(-1deg);
+  -o-transform: scale(1.15) rotate(-1deg);
+}
+
+/* Extra Premium Touch (Pulse Glow) */
+.dashboard-card-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: radial-gradient(
+    circle at top,
+    rgba(255, 255, 255, 0.35),
+    transparent 60%
+  );
+  opacity: 0.6;
+  pointer-events: none;
 }

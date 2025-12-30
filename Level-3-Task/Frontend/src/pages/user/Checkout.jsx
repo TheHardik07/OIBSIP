@@ -8,6 +8,7 @@ const Checkout = () => {
   const { selectedIngredients, totalPrice } = location.state || {};
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [loading, setLoading] = useState(false);
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
 
   const handlePayment = async () => {
     setLoading(true);
@@ -24,7 +25,7 @@ const Checkout = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:5002/api/orders",
+        `${import.meta.env.VITE_API_URL}/api/orders`,
         orderData,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -32,17 +33,25 @@ const Checkout = () => {
       );
 
       const options = {
-        key: "your_razorpay_key_id", // Replace with actual key
+        key: "rzp_test_your_key_here", // Replace with your Razorpay test key
         amount: response.data.amount,
         currency: response.data.currency,
         order_id: response.data.razorpayOrderId,
-        name: "Pizza Delivery",
+        name: "Pizza Palace",
         description: "Pizza Order Payment",
         handler: function (response) {
           // Handle successful payment
           navigate("/order-placed", {
             state: { orderId: response.razorpay_order_id },
           });
+        },
+        prefill: {
+          name: user?.name || "Pizza Lover",
+          email: user?.email || "customer@example.com",
+          contact: "9999999999",
+        },
+        theme: {
+          color: "#8D1B3D", // Wine Red
         },
       };
 
@@ -59,7 +68,7 @@ const Checkout = () => {
       <div
         style={{
           minHeight: "100vh",
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          background: "linear-gradient(135deg, #2D2D2D 0%, #8D1B3D 100%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -68,18 +77,18 @@ const Checkout = () => {
       >
         <div
           style={{
-            background: "rgba(255, 255, 255, 0.1)",
+            background: "rgba(250, 247, 242, 0.12)",
             backdropFilter: "blur(10px)",
             borderRadius: "20px",
             padding: "40px",
-            boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
-            border: "1px solid rgba(255, 255, 255, 0.18)",
+            boxShadow: "0 25px 60px rgba(0,0,0,0.55)",
+            border: "1px solid rgba(242, 201, 76, 0.35)",
             textAlign: "center",
           }}
         >
           <p
             style={{
-              color: "white",
+              color: "#2D2D2D",
               fontSize: "1.2rem",
               margin: "0",
               textShadow: "0 2px 4px rgba(0,0,0,0.3)",
@@ -96,7 +105,7 @@ const Checkout = () => {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        background: "linear-gradient(135deg, #2D2D2D 0%, #8D1B3D 100%)",
         padding: "120px 20px 20px 20px", // Increased top padding for better navbar separation
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
@@ -105,22 +114,23 @@ const Checkout = () => {
         style={{
           maxWidth: "800px",
           margin: "0 auto",
-          background: "rgba(255, 255, 255, 0.1)",
+          background: "rgba(250, 247, 242, 0.08)",
           backdropFilter: "blur(10px)",
           borderRadius: "20px",
           padding: "40px",
-          boxShadow: "0 8px 32px rgba(31, 38, 135, 0.37)",
-          border: "1px solid rgba(255, 255, 255, 0.18)",
+          boxShadow: "0 25px 60px rgba(0,0,0,0.55)",
+          border: "1px solid rgba(242, 201, 76, 0.35)",
         }}
       >
         <h2
           style={{
-            color: "white",
+            color: "#F2C94C",
             textAlign: "center",
             marginBottom: "40px",
             fontSize: "2.5rem",
-            fontWeight: "300",
+            fontWeight: "600",
             textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+            letterSpacing: "0.6px",
           }}
         >
           Checkout
@@ -136,20 +146,20 @@ const Checkout = () => {
           {/* Order Summary */}
           <div
             style={{
-              background: "rgba(255, 255, 255, 0.15)",
+              background: "rgba(250, 247, 242, 0.12)",
               backdropFilter: "blur(10px)",
               borderRadius: "15px",
               padding: "25px",
-              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
+              boxShadow: "0 15px 40px rgba(0,0,0,0.45)",
+              border: "1px solid rgba(242, 201, 76, 0.35)",
             }}
           >
             <h3
               style={{
-                color: "white",
+                color: "#8D1B3D",
                 margin: "0 0 20px 0",
                 fontSize: "1.5rem",
-                fontWeight: "500",
+                fontWeight: "700",
                 textShadow: "0 1px 2px rgba(0,0,0,0.3)",
               }}
             >
@@ -164,12 +174,12 @@ const Checkout = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     padding: "10px 0",
-                    borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+                    borderBottom: "1px solid rgba(0,0,0,0.1)",
                   }}
                 >
                   <span
                     style={{
-                      color: "white",
+                      color: "#2D2D2D",
                       fontSize: "1rem",
                       textShadow: "0 1px 2px rgba(0,0,0,0.3)",
                     }}
@@ -178,9 +188,9 @@ const Checkout = () => {
                   </span>
                   <span
                     style={{
-                      color: "rgba(255, 255, 255, 0.9)",
+                      color: "#8D1B3D",
                       fontSize: "1rem",
-                      fontWeight: "500",
+                      fontWeight: "600",
                     }}
                   >
                     ₹{ing.price}
@@ -194,15 +204,15 @@ const Checkout = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 padding: "15px 0",
-                borderTop: "2px solid rgba(255, 255, 255, 0.2)",
+                borderTop: "2px solid rgba(242, 201, 76, 0.5)",
                 marginTop: "15px",
               }}
             >
               <span
                 style={{
-                  color: "white",
+                  color: "#2D2D2D",
                   fontSize: "1.3rem",
-                  fontWeight: "600",
+                  fontWeight: "700",
                   textShadow: "0 1px 2px rgba(0,0,0,0.3)",
                 }}
               >
@@ -210,9 +220,9 @@ const Checkout = () => {
               </span>
               <span
                 style={{
-                  color: "white",
+                  color: "#2D2D2D",
                   fontSize: "1.3rem",
-                  fontWeight: "600",
+                  fontWeight: "700",
                   textShadow: "0 1px 2px rgba(0,0,0,0.3)",
                 }}
               >
@@ -224,20 +234,20 @@ const Checkout = () => {
           {/* Delivery Address */}
           <div
             style={{
-              background: "rgba(255, 255, 255, 0.15)",
+              background: "rgba(250, 247, 242, 0.12)",
               backdropFilter: "blur(10px)",
               borderRadius: "15px",
               padding: "25px",
-              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
+              boxShadow: "0 15px 40px rgba(0,0,0,0.45)",
+              border: "1px solid rgba(242, 201, 76, 0.35)",
             }}
           >
             <h3
               style={{
-                color: "white",
+                color: "#8D1B3D",
                 margin: "0 0 20px 0",
                 fontSize: "1.5rem",
-                fontWeight: "500",
+                fontWeight: "700",
                 textShadow: "0 1px 2px rgba(0,0,0,0.3)",
               }}
             >
@@ -247,10 +257,10 @@ const Checkout = () => {
               <label
                 style={{
                   display: "block",
-                  color: "rgba(255, 255, 255, 0.9)",
+                  color: "#2D2D2D",
                   marginBottom: "8px",
                   fontSize: "1rem",
-                  fontWeight: "500",
+                  fontWeight: "600",
                 }}
               >
                 Delivery Address:
@@ -263,9 +273,9 @@ const Checkout = () => {
                   width: "100%",
                   padding: "12px",
                   borderRadius: "8px",
-                  border: "1px solid rgba(255, 255, 255, 0.3)",
-                  background: "rgba(255, 255, 255, 0.1)",
-                  color: "white",
+                  border: "1px solid rgba(0,0,0,0.2)",
+                  background: "#FAF7F2",
+                  color: "#2D2D2D",
                   fontSize: "1rem",
                   fontFamily: "inherit",
                   resize: "vertical",
@@ -273,12 +283,8 @@ const Checkout = () => {
                   outline: "none",
                   transition: "border-color 0.3s ease",
                 }}
-                onFocus={(e) =>
-                  (e.target.style.borderColor = "rgba(255, 255, 255, 0.6)")
-                }
-                onBlur={(e) =>
-                  (e.target.style.borderColor = "rgba(255, 255, 255, 0.3)")
-                }
+                onFocus={(e) => (e.target.style.borderColor = "#F2C94C")}
+                onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.2)")}
                 placeholder="Enter your delivery address..."
               />
             </div>
@@ -294,8 +300,8 @@ const Checkout = () => {
               background:
                 loading || !deliveryAddress
                   ? "rgba(255, 255, 255, 0.2)"
-                  : "linear-gradient(135deg, #4CAF50 0%, #45a049 100%)",
-              color: "white",
+                  : "linear-gradient(135deg, #F2C94C 0%, #8D1B3D 100%)",
+              color: "#2D2D2D",
               border: "none",
               padding: "15px 40px",
               borderRadius: "25px",
@@ -306,20 +312,21 @@ const Checkout = () => {
               boxShadow:
                 loading || !deliveryAddress
                   ? "none"
-                  : "0 4px 15px rgba(76, 175, 80, 0.3)",
+                  : "0 6px 20px rgba(141, 27, 61, 0.55)",
               textShadow: "0 1px 2px rgba(0,0,0,0.3)",
               minWidth: "200px",
             }}
             onMouseEnter={(e) => {
               if (!loading && deliveryAddress) {
                 e.target.style.transform = "translateY(-2px)";
-                e.target.style.boxShadow = "0 6px 20px rgba(76, 175, 80, 0.4)";
+                e.target.style.boxShadow =
+                  "0 10px 30px rgba(141, 27, 61, 0.65)";
               }
             }}
             onMouseLeave={(e) => {
               if (!loading && deliveryAddress) {
                 e.target.style.transform = "translateY(0)";
-                e.target.style.boxShadow = "0 4px 15px rgba(76, 175, 80, 0.3)";
+                e.target.style.boxShadow = "0 6px 20px rgba(141, 27, 61, 0.55)";
               }
             }}
           >

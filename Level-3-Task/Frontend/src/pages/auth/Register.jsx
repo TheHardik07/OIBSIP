@@ -16,7 +16,10 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:5002/api/auth/register", formData);
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
+        formData
+      );
       setMessage(
         "Registration successful! Please check your email to verify your account."
       );
@@ -38,16 +41,17 @@ const Register = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        background: "linear-gradient(135deg, #2D2D2D 0%, #8D1B3D 100%)",
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
     >
       <div
         style={{
-          background: "white",
+          background: "#FAF7F2",
+          boxShadow: "0 25px 60px rgba(0,0,0,0.45)",
+          border: "1px solid rgba(242, 201, 76, 0.35)",
           padding: "40px",
           borderRadius: "15px",
-          boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
           width: "100%",
           maxWidth: "400px",
           textAlign: "center",
@@ -61,7 +65,8 @@ const Register = () => {
           <h2
             style={{
               margin: "0 0 10px 0",
-              color: "#333",
+              color: "#8D1B3D",
+              letterSpacing: "0.5px",
               fontSize: "28px",
               fontWeight: "600",
             }}
@@ -71,11 +76,11 @@ const Register = () => {
           <p
             style={{
               margin: "0",
-              color: "#666",
+              color: "#2D2D2D",
               fontSize: "16px",
             }}
           >
-            Join us for delicious pizzas! 🍕
+            Join us for delicious pizzas!
           </p>
         </div>
 
@@ -91,14 +96,14 @@ const Register = () => {
               style={{
                 width: "100%",
                 padding: "15px",
-                border: "2px solid #e1e5e9",
+                border: "2px solid rgba(0,0,0,0.15)",
                 borderRadius: "8px",
                 fontSize: "16px",
                 transition: "border-color 0.3s ease",
                 outline: "none",
                 boxSizing: "border-box",
               }}
-              onFocus={(e) => (e.target.style.borderColor = "#667eea")}
+              onFocus={(e) => (e.target.style.borderColor = "#F2C94C")}
               onBlur={(e) => (e.target.style.borderColor = "#e1e5e9")}
             />
           </div>
@@ -114,14 +119,14 @@ const Register = () => {
               style={{
                 width: "100%",
                 padding: "15px",
-                border: "2px solid #e1e5e9",
+                border: "2px solid rgba(0,0,0,0.15)",
                 borderRadius: "8px",
                 fontSize: "16px",
                 transition: "border-color 0.3s ease",
                 outline: "none",
                 boxSizing: "border-box",
               }}
-              onFocus={(e) => (e.target.style.borderColor = "#667eea")}
+              onFocus={(e) => (e.target.style.borderColor = "#F2C94C")}
               onBlur={(e) => (e.target.style.borderColor = "#e1e5e9")}
             />
           </div>
@@ -137,14 +142,14 @@ const Register = () => {
               style={{
                 width: "100%",
                 padding: "15px",
-                border: "2px solid #e1e5e9",
+                border: "2px solid rgba(0,0,0,0.15)",
                 borderRadius: "8px",
                 fontSize: "16px",
                 transition: "border-color 0.3s ease",
                 outline: "none",
                 boxSizing: "border-box",
               }}
-              onFocus={(e) => (e.target.style.borderColor = "#667eea")}
+              onFocus={(e) => (e.target.style.borderColor = "#F2C94C")}
               onBlur={(e) => (e.target.style.borderColor = "#e1e5e9")}
             />
           </div>
@@ -157,8 +162,9 @@ const Register = () => {
               padding: "15px",
               background: loading
                 ? "#ccc"
-                : "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-              color: "white",
+                : "linear-gradient(135deg, #F2C94C 0%, #8D1B3D 100%)",
+              color: "#2D2D2D",
+              boxShadow: "0 10px 30px rgba(141, 27, 61, 0.35)",
               border: "none",
               borderRadius: "8px",
               fontSize: "16px",
@@ -171,7 +177,7 @@ const Register = () => {
               if (!loading) {
                 e.target.style.transform = "translateY(-2px)";
                 e.target.style.boxShadow =
-                  "0 5px 15px rgba(102, 126, 234, 0.4)";
+                  "0 15px 40px rgba(141, 27, 61, 0.55)";
               }
             }}
             onMouseLeave={(e) => {
@@ -192,12 +198,14 @@ const Register = () => {
               padding: "12px",
               borderRadius: "6px",
               backgroundColor: message.includes("successful")
-                ? "#d4edda"
-                : "#f8d7da",
+                ? "rgba(47, 133, 90, 0.15)"
+                : "rgba(141, 27, 61, 0.12)",
               border: `1px solid ${
-                message.includes("successful") ? "#c3e6cb" : "#f5c6cb"
+                message.includes("successful")
+                  ? "rgba(47, 133, 90, 0.45)"
+                  : "rgba(141, 27, 61, 0.45)"
               }`,
-              color: message.includes("successful") ? "#155724" : "#721c24",
+              color: message.includes("successful") ? "#2F855A" : "#8D1B3D",
             }}
           >
             {message}
@@ -213,7 +221,7 @@ const Register = () => {
           <p
             style={{
               margin: "0",
-              color: "#666",
+              color: "#2D2D2D",
               fontSize: "14px",
             }}
           >
@@ -221,7 +229,7 @@ const Register = () => {
             <a
               href="/login"
               style={{
-                color: "#667eea",
+                color: "#8D1B3D",
                 textDecoration: "none",
                 fontWeight: "500",
               }}

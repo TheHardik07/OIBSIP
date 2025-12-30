@@ -1,43 +1,52 @@
 import axios from "axios";
 
-export const startPayment = async (pizza, amount, token) => {
+export const startPayment = async (pizza, amount, token, user, navigate) => {
   try {
     const { data } = await axios.post(
-      "http://localhost:5002/api/orders/create-payment",
+      `${import.meta.env.VITE_API_URL}/api/orders/create-payment`,
       { amount },
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
     const options = {
-      key: "rzp_test_your_key_here", // Replace with your test key
+      key: "rzp_test_your_key_here", // Replace with your Razorpay test key
       amount: data.amount,
       currency: "INR",
-      name: "Pizza App",
+      name: "Pizza Palace",
       description: "Custom Pizza Order",
       order_id: data.id,
-      handler: async function () {
+      handler: async function (response) {
         try {
-          await axios.post(
-            "http://localhost:5002/api/orders/confirm",
-            { pizza, amount },
+          const confirmResponse = await axios.post(
+            `${import.meta.env.VITE_API_URL}/api/orders/confirm`,
+            {
+              pizza,
+              amount,
+              deliveryAddress: "From Pizza Builder", // Placeholder address
+              razorpayPaymentId: response.razorpay_payment_id,
+              razorpayOrderId: response.razorpay_order_id,
+              razorpaySignature: response.razorpay_signature,
+            },
             { headers: { Authorization: `Bearer ${token}` } }
           );
-          alert("Order Placed Successfully! 🍕");
-          window.location.href = "/user/orders";
+          // Navigate to order placed screen with order details
+          navigate("/order-placed", {
+            state: { orderId: confirmResponse.data.orderId },
+          });
         } catch (error) {
           alert(
-            "Payment successful but order confirmation failed. Please contact support.",
-            error
+            "Payment successful but order confirmation failed. Please contact support."
           );
+          console.error("Order confirmation error:", error);
         }
       },
       prefill: {
-        name: "Customer Name",
-        email: "customer@example.com",
+        name: user?.name || "Pizza Lover",
+        email: user?.email || "customer@example.com",
         contact: "9999999999",
       },
       theme: {
-        color: "#4CAF50",
+        color: "#8D1B3D", // Wine Red
       },
     };
 
