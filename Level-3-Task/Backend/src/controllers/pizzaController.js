@@ -39,3 +39,13 @@ exports.getCheeses = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Get veggies options
+exports.getVeggies = async (req, res) => {
+  try {
+    const veggies = await Inventory.find({ category: "veggie" });
+    res.json(veggies);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

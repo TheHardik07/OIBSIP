@@ -4,7 +4,7 @@ const Inventory = require("../models/Inventory");
 exports.getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find()
-      .populate("user", "username email")
+      .populate("user", "name email")
       .sort({ createdAt: -1 });
     res.json(orders);
   } catch (error) {

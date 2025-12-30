@@ -4,13 +4,15 @@ const {
   createOrder,
   getUserOrders,
   getOrderById,
-  updateOrderStatus,
+  createPaymentOrder,
+  confirmOrder,
 } = require("../controllers/orderController");
 const { protect } = require("../middleware/authMiddleware");
 
 router.post("/", protect, createOrder);
+router.post("/create-payment", protect, createPaymentOrder);
+router.post("/confirm", protect, confirmOrder);
 router.get("/", protect, getUserOrders);
 router.get("/:id", protect, getOrderById);
-router.put("/:id/status", protect, updateOrderStatus);
 
 module.exports = router;

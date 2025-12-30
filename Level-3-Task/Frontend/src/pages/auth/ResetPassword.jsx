@@ -1,34 +1,33 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Register = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+const ResetPassword = () => {
+  const { token } = useParams();
+  const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      setMessage("Passwords do not match");
+      return;
+    }
     setLoading(true);
     try {
-      await axios.post("http://localhost:5002/api/auth/register", formData);
-      setMessage(
-        "Registration successful! Please check your email to verify your account."
+      await axios.post(
+        `http://localhost:5002/api/auth/reset-password/${token}`,
+        { password }
       );
+      setMessage("Password reset successful! Redirecting to login...");
       setTimeout(() => navigate("/login"), 3000);
     } catch (error) {
-      setMessage(error.response?.data?.message || "Registration failed");
+      setMessage(error.response?.data?.message || "Failed to reset password");
     }
     setLoading(false);
-  };
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -66,50 +65,27 @@ const Register = () => {
               fontWeight: "600",
             }}
           >
-            Create Account
+            New Password
           </h2>
           <p
             style={{
               margin: "0",
               color: "#666",
               fontSize: "16px",
+              lineHeight: "1.5",
             }}
           >
-            Join us for delicious pizzas! 🍕
+            Enter your new password below.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
           <div style={{ marginBottom: "20px" }}>
             <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              style={{
-                width: "100%",
-                padding: "15px",
-                border: "2px solid #e1e5e9",
-                borderRadius: "8px",
-                fontSize: "16px",
-                transition: "border-color 0.3s ease",
-                outline: "none",
-                boxSizing: "border-box",
-              }}
-              onFocus={(e) => (e.target.style.borderColor = "#667eea")}
-              onBlur={(e) => (e.target.style.borderColor = "#e1e5e9")}
-            />
-          </div>
-
-          <div style={{ marginBottom: "20px" }}>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              value={formData.email}
-              onChange={handleChange}
+              type="password"
+              placeholder="New Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
               style={{
                 width: "100%",
@@ -129,10 +105,9 @@ const Register = () => {
           <div style={{ marginBottom: "30px" }}>
             <input
               type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
+              placeholder="Confirm New Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required
               style={{
                 width: "100%",
@@ -166,6 +141,7 @@ const Register = () => {
               cursor: loading ? "not-allowed" : "pointer",
               transition: "transform 0.2s ease, box-shadow 0.2s ease",
               outline: "none",
+              marginBottom: "20px",
             }}
             onMouseEnter={(e) => {
               if (!loading) {
@@ -181,7 +157,7 @@ const Register = () => {
               }
             }}
           >
-            {loading ? "Creating Account..." : "Create Account"}
+            {loading ? "Updating Password..." : "Update Password"}
           </button>
         </form>
 
@@ -217,7 +193,6 @@ const Register = () => {
               fontSize: "14px",
             }}
           >
-            Already have an account?{" "}
             <a
               href="/login"
               style={{
@@ -230,7 +205,7 @@ const Register = () => {
               }
               onMouseLeave={(e) => (e.target.style.textDecoration = "none")}
             >
-              Sign In
+              Back to Sign In
             </a>
           </p>
         </div>
@@ -239,4 +214,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ResetPassword;

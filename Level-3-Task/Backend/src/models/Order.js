@@ -7,6 +7,12 @@ const orderSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    pizza: {
+      base: String,
+      sauce: String,
+      cheese: String,
+      veggies: [String],
+    },
     items: [
       {
         name: String,
@@ -21,24 +27,23 @@ const orderSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: [
-        "pending",
-        "confirmed",
-        "preparing",
-        "ready",
-        "delivered",
-        "cancelled",
+        "Order Received",
+        "In Kitchen",
+        "Out for Delivery",
+        "Delivered",
+        "Cancelled",
       ],
-      default: "pending",
+      default: "Order Received",
     },
     paymentId: String,
     paymentStatus: {
       type: String,
-      enum: ["pending", "paid", "failed"],
-      default: "pending",
+      enum: ["Pending", "Paid", "Failed"],
+      default: "Pending",
     },
     deliveryAddress: {
       type: String,
-      required: true,
+      default: "Default Address",
     },
     estimatedDeliveryTime: Date,
   },
