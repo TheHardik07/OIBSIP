@@ -20,6 +20,63 @@ const Orders = () => {
     fetchOrders();
   }, []);
 
+  const handlePayment = async (order) => {
+    try {
+      if (!window.Razorpay) {
+        alert("Razorpay SDK not loaded");
+        return;
+      }
+
+      const token = localStorage.getItem("token");
+      const { data: razorpayOrder } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/orders/create-payment`,
+        { amount: order.totalAmount },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+        amount: razorpayOrder.amount,
+        currency: "INR",
+        order_id: razorpayOrder.id,
+        name: "Pizza Palace (Test)",
+        handler: async () => {
+          try {
+            const { data: confirmedOrder } = await axios.post(
+              `${import.meta.env.VITE_API_URL}/api/orders/confirm`,
+              {
+                orderId: order._id,
+                razorpayPaymentId: razorpayOrder.id,
+              },
+              {
+                headers: { Authorization: `Bearer ${token}` },
+              }
+            );
+            alert("✅ Test payment success");
+            setOrders(
+              orders.map((o) =>
+                o._id === order._id
+                  ? { ...o, paymentStatus: "Paid", status: "Order Received" }
+                  : o
+              )
+            );
+          } catch (err) {
+            console.error(err);
+            alert("Failed to confirm payment");
+          }
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (err) {
+      console.error(err);
+      alert("Failed to initiate payment");
+    }
+  };
+
   const getStatusColor = (status) => {
     switch (status) {
       case "Order Received":
@@ -175,6 +232,32 @@ const Orders = () => {
                   </span>
                 </div>
 
+                <div style={{ marginBottom: "15px" }}>
+                  <span
+                    style={{
+                      color: "#8D1B3D",
+                      fontSize: "0.9rem",
+                      fontWeight: "600",
+                    }}
+                  >
+                    Payment Status:
+                  </span>
+                  <span
+                    style={{
+                      color: getStatusColor(order.paymentStatus),
+                      fontWeight: "600",
+                      marginLeft: "8px",
+                      padding: "4px 12px",
+                      borderRadius: "20px",
+                      fontSize: "0.85rem",
+                      background: "rgba(250, 247, 242, 0.7)",
+                      textShadow: "0 1px 2px rgba(0,0,0,0.3)",
+                    }}
+                  >
+                    {order.paymentStatus}
+                  </span>
+                </div>
+
                 <p
                   style={{
                     color: "#2D2D2D",
@@ -261,6 +344,29 @@ const Orders = () => {
                     Estimated Delivery:{" "}
                     {new Date(order.estimatedDeliveryTime).toLocaleString()}
                   </p>
+                )}
+
+                {order.paymentStatus === "Pending" && (
+                  <div style={{ textAlign: "center", marginTop: "20px" }}>
+                    <button
+                      onClick={() => handlePayment(order)}
+                      style={{
+                        background:
+                          "linear-gradient(135deg, #F2C94C 0%, #8D1B3D 100%)",
+                        color: "#2D2D2D",
+                        border: "none",
+                        padding: "10px 20px",
+                        borderRadius: "20px",
+                        fontSize: "0.9rem",
+                        fontWeight: "600",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
+                        boxShadow: "0 4px 15px rgba(141, 27, 61, 0.4)",
+                      }}
+                    >
+                      Pay Now
+                    </button>
+                  </div>
                 )}
               </div>
             ))}

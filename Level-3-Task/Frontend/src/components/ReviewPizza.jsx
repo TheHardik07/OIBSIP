@@ -1,21 +1,42 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import axios from "axios";
 
 export default function ReviewPizza({ pizza, totalPrice }) {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  const handlePayment = () => {
+  const handleBuild = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
       alert("Please login to place an order");
       navigate("/login");
       return;
     }
-    // Import the payment function dynamically to avoid circular imports
-    import("../utils/razorpay").then(({ startPayment }) => {
-      startPayment(pizza, totalPrice, token, user, navigate);
-    });
+
+    try {
+      const orderDetails = {
+        pizza: pizza,
+        amount: totalPrice,
+      };
+
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/orders/build-order`,
+        orderDetails,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      alert("Pizza built successfully! Check your orders.");
+      navigate("/user/orders");
+    } catch (err) {
+      console.error("Order creation failed:", err);
+      if (err.response) {
+        console.error("Error response:", err.response.data);
+        alert(`Failed to build pizza: ${err.response.data.message}`);
+      } else {
+        alert("Failed to build pizza. Please try again.");
+      }
+    }
   };
 
   return (
@@ -114,7 +135,7 @@ export default function ReviewPizza({ pizza, totalPrice }) {
 
       <div style={{ textAlign: "center", marginTop: "30px" }}>
         <button
-          onClick={handlePayment}
+          onClick={handleBuild}
           disabled={!pizza.base || !pizza.sauce || !pizza.cheese}
           style={{
             background:
@@ -139,7 +160,7 @@ export default function ReviewPizza({ pizza, totalPrice }) {
             textShadow: "0 1px 2px rgba(0,0,0,0.3)",
           }}
         >
-          Pay & Place Order
+          Build Pizza
         </button>
       </div>
     </div>

@@ -9,6 +9,22 @@ exports.register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    // Basic validation
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: "Please provide name, email, and password" });
+    }
+
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+
+    // Password length validation
+    if (password.length < 6) {
+      return res.status(400).json({ message: "Password must be at least 6 characters long" });
+    }
+
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -22,25 +38,26 @@ exports.register = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      verificationToken: token,
+      isVerified: true,
+      // verificationToken: token,
     });
 
     console.log(user);
-    const verifyLink = `${process.env.CLIENT_URL}/verify-email/${token}`;
+    // const verifyLink = `${process.env.CLIENT_URL}/verify-email/${token}`;
 
-    try {
-      await sendEmail(
-        email,
-        "Verify Your Email",
-        `<p>Click to verify: <a href="${verifyLink}">Verify</a></p>`
-      );
-    } catch (emailError) {
-      console.warn("Email sending failed:", emailError.message);
-    }
+    // try {
+    //   await sendEmail(
+    //     email,
+    //     "Verify Your Email",
+    //     `<p>Click to verify: <a href="${verifyLink}">Verify</a></p>`
+    //   );
+    // } catch (emailError) {
+    //   console.warn("Email sending failed:", emailError.message);
+    // }
 
     res.json({
       message:
-        "User registered successfully. Please check your email to verify your account.",
+        "User registered successfully.",
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -84,6 +101,9 @@ exports.manualVerify = async (req, res) => {
 
 /* CREATE ADMIN USER (for development) */
 exports.createAdmin = async (req, res) => {
+  if (process.env.NODE_ENV !== 'development') {
+    return res.status(403).json({ message: 'This endpoint is not available in production' });
+  }
   try {
     const { name, email, password } = req.body;
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -10,57 +10,46 @@ const Checkout = () => {
   const [loading, setLoading] = useState(false);
   const user = JSON.parse(localStorage.getItem("user") || "{}");
 
-  const handlePayment = async () => {
-    setLoading(true);
-    try {
-      const token = localStorage.getItem("token");
-      const orderData = {
-        items: selectedIngredients.map((ing) => ({
-          name: ing.name,
-          quantity: 1,
-          price: ing.price,
-        })),
-        totalAmount: totalPrice,
-        deliveryAddress,
-      };
+  useEffect(() => {
+    if (!selectedIngredients) {
+      alert("No items selected. Please go back to pizza builder.");
+      navigate("/user/pizza-builder");
+    }
+  }, [selectedIngredients, navigate]);
 
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/orders`,
-        orderData,
+  const handlePayment = async () => {
+    try {
+      if (!window.Razorpay) {
+        alert("Razorpay SDK not loaded");
+        return;
+      }
+
+      console.log("Amount:", totalPrice);
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/orders/create-payment`,
+        { amount: totalPrice },
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
 
       const options = {
-        key: "rzp_test_your_key_here", // Replace with your Razorpay test key
-        amount: response.data.amount,
-        currency: response.data.currency,
-        order_id: response.data.razorpayOrderId,
-        name: "Pizza Palace",
-        description: "Pizza Order Payment",
-        handler: function (response) {
-          // Handle successful payment
-          navigate("/order-placed", {
-            state: { orderId: response.razorpay_order_id },
-          });
-        },
-        prefill: {
-          name: user?.name || "Pizza Lover",
-          email: user?.email || "customer@example.com",
-          contact: "9999999999",
-        },
-        theme: {
-          color: "#8D1B3D", // Wine Red
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+        amount: res.data.amount,
+        currency: "INR",
+        order_id: res.data.id,
+        name: "Pizza Palace (Test)",
+        handler: () => {
+          alert("✅ Test payment success");
         },
       };
 
       const rzp = new window.Razorpay(options);
       rzp.open();
-    } catch (error) {
-      console.error("Payment error:", error);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to initiate payment");
     }
-    setLoading(false);
   };
 
   if (!selectedIngredients) {
@@ -106,7 +95,7 @@ const Checkout = () => {
       style={{
         minHeight: "100vh",
         background: "linear-gradient(135deg, #2D2D2D 0%, #8D1B3D 100%)",
-        padding: "120px 20px 20px 20px", // Increased top padding for better navbar separation
+        padding: "120px 20px 20px 20px",
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
     >
@@ -284,7 +273,9 @@ const Checkout = () => {
                   transition: "border-color 0.3s ease",
                 }}
                 onFocus={(e) => (e.target.style.borderColor = "#F2C94C")}
-                onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.2)")}
+                onBlur={(e) =>
+                  (e.target.style.borderColor = "rgba(0,0,0,0.2)")
+                }
                 placeholder="Enter your delivery address..."
               />
             </div>
@@ -307,7 +298,8 @@ const Checkout = () => {
               borderRadius: "25px",
               fontSize: "1.1rem",
               fontWeight: "600",
-              cursor: loading || !deliveryAddress ? "not-allowed" : "pointer",
+              cursor:
+                loading || !deliveryAddress ? "not-allowed" : "pointer",
               transition: "all 0.3s ease",
               boxShadow:
                 loading || !deliveryAddress
@@ -326,7 +318,8 @@ const Checkout = () => {
             onMouseLeave={(e) => {
               if (!loading && deliveryAddress) {
                 e.target.style.transform = "translateY(0)";
-                e.target.style.boxShadow = "0 6px 20px rgba(141, 27, 61, 0.55)";
+                e.target.style.boxShadow =
+                  "0 6px 20px rgba(141, 27, 61, 0.55)";
               }
             }}
           >

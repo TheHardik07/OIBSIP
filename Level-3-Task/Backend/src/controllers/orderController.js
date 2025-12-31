@@ -82,6 +82,29 @@ exports.getOrderById = async (req, res) => {
 
 exports.confirmOrder = async (req, res) => {
   try {
+    const { orderId, razorpayPaymentId } = req.body;
+    const userId = req.user.id;
+
+    const order = await Order.findOne({ _id: orderId, user: userId });
+
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    order.paymentStatus = "Paid";
+    order.status = "Order Received";
+    order.paymentId = razorpayPaymentId;
+
+    await order.save();
+
+    res.json({ message: "Order placed successfully", order });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.buildOrder = async (req, res) => {
+  try {
     const { pizza, amount } = req.body;
     const userId = req.user.id;
 
@@ -152,11 +175,11 @@ exports.confirmOrder = async (req, res) => {
       user: userId,
       pizza,
       totalAmount: amount,
-      paymentStatus: "Paid",
+      paymentStatus: "Pending",
       status: "Order Received",
     });
 
-    res.json({ message: "Order placed successfully", order });
+    res.json({ message: "Order built successfully", order });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -180,6 +203,39 @@ exports.createPaymentOrder = async (req, res) => {
 
     const order = await razorpay.orders.create(options);
     res.json(order);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.createBuildOrder = async (req, res) => {
+  try {
+    const { items, totalAmount, deliveryAddress } = req.body;
+    const userId = req.user.id;
+
+    // Check inventory availability
+    for (const item of items) {
+      const inventoryItem = await Inventory.findOne({ name: item.name });
+      if (!inventoryItem || inventoryItem.quantity < item.quantity) {
+        return res
+          .status(400)
+          .json({ message: `Insufficient ${item.name} in inventory` });
+      }
+    }
+
+    const order = await Order.create({
+      user: userId,
+      items,
+      totalAmount,
+      deliveryAddress,
+      paymentStatus: "Not Paid",
+      status: "Built",
+    });
+
+    res.status(201).json({
+      order,
+      message: "Order created successfully",
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
