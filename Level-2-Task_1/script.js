@@ -5,11 +5,13 @@ const toggle = document.getElementById("themeToggle");
 
 let current = "";
 let calculated = false;
+const operators = ["+", "-", "X", "/", "%"];
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     const value = button.innerText;
 
+    // Clear
     if (button.classList.contains("btn-clear")) {
       current = "";
       display.innerText = "0";
@@ -17,12 +19,14 @@ buttons.forEach((button) => {
       return;
     }
 
+    // Delete
     if (button.classList.contains("btn-delete")) {
       current = current.slice(0, -1);
       display.innerText = current || "0";
       return;
     }
 
+    // Equals
     if (button.classList.contains("btn-equals")) {
       try {
         const result = eval(current.replace(/X/g, "*"));
@@ -36,7 +40,14 @@ buttons.forEach((button) => {
       }
       return;
     }
-    if (calculated) {
+
+    // Prevent double operators
+    if (operators.includes(value) && operators.includes(current.slice(-1))) {
+      return;
+    }
+
+    // Reset after calculation
+    if (calculated && !operators.includes(value)) {
       current = "";
       calculated = false;
     }
@@ -46,6 +57,7 @@ buttons.forEach((button) => {
   });
 });
 
+// Theme toggle
 toggle.addEventListener("change", () => {
   document.body.classList.toggle("dark-mode");
 });

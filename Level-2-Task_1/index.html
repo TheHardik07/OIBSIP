@@ -3,24 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculator</title>
+    <title>Premium Calculator</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
+    <div class="toggle-container">
+      <label class="toggle-label">
+        <input type="checkbox" id="themeToggle" />
+        Dark Mode
+      </label>
+    </div>
     <div class="calculator">
-      <!-- dark light converter -->
-
-      <div class="toggle-container">
-        <label for="toggle-label" class="toggle-label">
-          <input type="checkbox" id="themeToggle" />
-          Dark Mode
-        </label>
-      </div>
-
-      <div class="display" id="display">0</div>
+      <!-- Displays -->
       <div class="small-display" id="smalldisplay"></div>
+      <div class="display" id="display">0</div>
 
+      <!-- Buttons -->
       <div class="buttons">
         <button class="btn-clear">C</button>
         <button class="btn-delete">DEL</button>
@@ -42,7 +41,7 @@
         <button class="btn-number">3</button>
         <button class="btn-op">+</button>
 
-        <button class="btn-number">0</button>
+        <button class="btn-number zero">0</button>
         <button class="btn-number">.</button>
         <button class="btn-equals">=</button>
       </div>
